@@ -13,7 +13,7 @@ final class DeviceDetectorTests: XCTestCase {
     
     func test_all_devices_from_plist() throws {
         devicesDict.allKeys.compactMap { $0 as? String }.forEach {
-            XCTAssertEqual(DeviceDetector.shared.device(id: $0), .unrecognized)
+            XCTAssertNotEqual(DeviceDetector.shared.device(id: $0), .unrecognized)
         }
     }
 }

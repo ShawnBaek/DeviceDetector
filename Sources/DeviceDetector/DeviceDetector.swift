@@ -15,7 +15,7 @@ public final class DeviceDetector {
     public let isiPhone: Bool
     private let deviceDict: NSDictionary
     private init() {
-        if let appleDevices = Bundle.main.path(forResource: "Device", ofType: "plist"),
+        if let appleDevices = Bundle.module.path(forResource: "Device", ofType: "plist"),
            let dict = NSDictionary(contentsOfFile: appleDevices) {
             deviceDict = dict
         }

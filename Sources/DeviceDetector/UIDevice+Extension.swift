@@ -47,10 +47,15 @@ extension UIDevice {
         guard var deviceName = dict.value(forKey: identifier) as? String else {
             return .unrecognized
         }
-        if deviceName == UIDevice.Identifier.simulator, let simulatorDeviceName = ProcessInfo().environment["SIMULATOR_MODEL_IDENTIFIER"] {
-            deviceName = simulatorDeviceName
+        if deviceName == UIDevice.Identifier.simulator, let simulatorDeviceIdentifier = ProcessInfo().environment["SIMULATOR_MODEL_IDENTIFIER"] {
+            if let simulatorDeviceName = dict.value(forKey: simulatorDeviceIdentifier) as? String {
+                deviceName = simulatorDeviceName
+            }
+            else {
+                return .unrecognized
+            }
         }
-        switch deviceName.lowercased() {
+        switch deviceName {
         case let model where model.starts(with: DeviceSet.iPhone.name):
             return iPhone(model: model)
         case let model where model.starts(with: DeviceSet.iPad.name):
