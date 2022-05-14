@@ -45,12 +45,20 @@ public struct DeviceSet: OptionSet {
     static let iPhone: DeviceSet = [.iPhoneSE, .iPhonePlus, .iPhone4_7inch, .iPhone4inch, .iPhoneX, .iPhoneXR, .iPhoneXMax, .iPhone11, .iPhone12, .iPhone13, .iPhoneMini, .iPhonePro, .iPhoneProMax]
     
     //MARK: iPad
-    static let iPad    = DeviceSet(rawValue: 1 << 1)
+    static let iPad5    = DeviceSet(rawValue: 1 << 1)
+    static let iPad6    = DeviceSet(rawValue: 1 << 1)
+    static let iPad7    = DeviceSet(rawValue: 1 << 1)
+    static let iPad8    = DeviceSet(rawValue: 1 << 1)
+    static let iPad9    = DeviceSet(rawValue: 1 << 1)
+    
     static let iPadMini  = DeviceSet(rawValue: 1 << 2)
+    
+    static let iPadPro9_7inch = DeviceSet(rawValue: 1 << 3)
+    static let iPadPro10_5inch = DeviceSet(rawValue: 1 << 3)
     static let iPadPro11inch   = DeviceSet(rawValue: 1 << 3)
     static let iPadPro12_9inch   = DeviceSet(rawValue: 1 << 4)
     
-    static let iPads: DeviceSet = [.iPad, .iPadMini, .iPadPro11inch, .iPadPro12_9inch]
+    static let iPad: DeviceSet = [.iPad, .iPadMini, .iPadPro11inch, .iPadPro12_9inch]
     
     public init(rawValue: Int) {
         self.rawValue = rawValue
@@ -88,7 +96,7 @@ public final class DeviceDetector {
     public static let shared = DeviceDetector()
     private init() {}
     lazy var product: DeviceSet = {
-        return .iPads
+        return .iPad
     }()
 }
 
