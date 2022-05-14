@@ -23,9 +23,15 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "DeviceDetector",
-            dependencies: []),
+            dependencies: [],
+            resources: [
+                   .process("Resources")
+               ]),
         .testTarget(
             name: "DeviceDetectorTests",
-            dependencies: ["DeviceDetector"]),
+            dependencies: ["DeviceDetector"],
+            resources: [
+                   .process("Resources")
+               ]),
     ]
 )
