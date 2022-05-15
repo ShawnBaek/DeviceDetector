@@ -17,6 +17,14 @@ final class DeviceDetectorTests: XCTestCase {
         }
     }
     
+    func test_simulator() throws {
+        let simulator = ["x86_64", "i386", "arm64"]
+        simulator.forEach {
+            let device = DeviceDetector.shared.device(id: $0)
+            XCTAssertNotEqual(device, .unrecognized, "Simulator should be detected device")
+        }
+    }
+    
     func test_iPad() throws {
         let iPad5th = ["iPad6,11", "iPad6,12"]
         let iPad6th = ["iPad7,5", "iPad7,6"]
