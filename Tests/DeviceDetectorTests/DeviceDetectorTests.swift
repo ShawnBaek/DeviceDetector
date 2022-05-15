@@ -163,6 +163,29 @@ final class DeviceDetectorTests: XCTestCase {
         XCTAssertTrue(DeviceSet.iPhoneSet.contains(iPhone12ProMaxDevice), "iPhone 12 Pro Max should be of iPhone")
     }
     
+    func test_iPhone13() throws {
+        let iPhone13Mini = "iPhone14,4"
+        let iPhone13 = "iPhone14,5"
+        let iPhone13Pro = "iPhone14,2"
+        let iPhone13ProMax = "iPhone14,3"
+        
+        let iPhone13MiniDevice = DeviceDetector.shared.device(id: iPhone13Mini)
+        XCTAssertEqual(iPhone13MiniDevice, .iPhoneMini)
+        XCTAssertTrue(DeviceSet.iPhoneSet.contains(iPhone13MiniDevice), "iPhone 13 mini should be of iPhone")
+        
+        let iPhone13Device = DeviceDetector.shared.device(id: iPhone13)
+        XCTAssertEqual(iPhone13Device, .iPhone13)
+        XCTAssertTrue(DeviceSet.iPhoneSet.contains(iPhone13Device), "iPhone 13 should be of iPhone")
+        
+        let iPhone13ProDevice = DeviceDetector.shared.device(id: iPhone13Pro)
+        XCTAssertEqual(iPhone13ProDevice, .iPhonePro)
+        XCTAssertTrue(DeviceSet.iPhoneSet.contains(iPhone13ProDevice), "iPhone 13 Pro should be of iPhone")
+        
+        let iPhone13ProMaxDevice = DeviceDetector.shared.device(id: iPhone13ProMax)
+        XCTAssertEqual(iPhone13ProMaxDevice, .iPhoneProMax)
+        XCTAssertTrue(DeviceSet.iPhoneSet.contains(iPhone13ProMaxDevice), "iPhone 13 Pro Max should be of iPhone")
+    }
+    
     func test_iPhone4_7inch() throws {
         let iPhone6 = "iPhone8,1"
         let iPhone7 = ["iPhone9,1", "iPhone9,3"]
