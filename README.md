@@ -2,6 +2,44 @@
 
 DeviceDetector detects apple's devices(iPhone and iPad) model names by using identifier code. I referred to this [wiki](https://www.theiphonewiki.com/wiki/Models). It does not support old models that can't install iOS 13
 
+```swift
+public final class DeviceDetector {
+    public static let shared = DeviceDetector()
+    public let currentDevice: DeviceSet
+    public let currentDeviceName: String
+    public let isiPad: Bool
+    public let isiPhone: Bool
+    public let hasSafeArea: Bool
+    private let deviceDict: NSDictionary
+    private init() {
+        if let appleDevices = Bundle.module.path(forResource: "Device", ofType: "plist"),
+           let dict = NSDictionary(contentsOfFile: appleDevices) {
+            deviceDict = dict
+        }
+        else {
+            deviceDict = [:]
+        }
+        currentDeviceName = UIDevice.current.deviceName(dict: deviceDict) ?? ""
+        currentDevice = UIDevice.current.device(name: currentDeviceName)
+        isiPad = DeviceSet.iPadSet.contains(currentDevice)
+        isiPhone = DeviceSet.iPhoneSet.contains(currentDevice)
+        if isiPhone, DeviceSet.iPhoneSafeAreaSet.contains(currentDevice) {
+            hasSafeArea = true
+        }
+        else {
+            hasSafeArea = false
+        }
+    }
+    
+    public func device(id: String) -> DeviceSet {
+        guard let deviceName = UIDevice.current.deviceName(id: id, dict: deviceDict) else {
+            return .unrecognized
+        }
+        return UIDevice.current.device(name: deviceName)
+    }
+}
+```
+
 ## Features
 You can check the device model not only physical device but also simulator.
 
@@ -11,14 +49,20 @@ import DeviceDetector
 DeviceDetector.shared.currentDevice //DeviceSet.iPhone11
 ```
 
-2. Check whether iPhone or iPad
+2. current device name (String)
+```swift
+import DeviceDetector
+DeviceDetector.shared.currentDeviceName //iPhone11
+```
+
+3. Check whether iPhone or iPad
 ```swift
 import DeviceDetector
 DeviceDetector.shared.isiPhone //true or false
 DeviceDetector.shared.isiPad //true or false
 ```
 
-3. Device Groups
+4. Device Groups
 It uses OptionSet. You can check Is your model subset of the device groups.
 
 - iPhoneSESet (iPhoneSE1, iPhoneSE2, iPhoneSE3)
