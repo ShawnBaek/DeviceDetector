@@ -23,28 +23,28 @@ It uses OptionSet. You can check Is your model subset of the device groups.
 - iPhoneSESet (iPhoneSE1, iPhoneSE2, iPhoneSE3)
 ```swift
 if DeviceSet.iPhoneSESet.contains(DeviceDetector.shared.currentDevice) {
-  print("This is iPhoneSE series")
+  print("This is iPhoneSE")
 }
 ```
 
 - iPhonePlusSet (iPhone6Plus, iPhone7Plus, iPhone8Plus)
 ```swift
 if DeviceSet.iPhonePlusSet.contains(DeviceDetector.shared.currentDevice) {
-  print("This is iPhonePlus series")
+  print("This is iPhonePlus")
 }
 ```
 
 - iPhone4_7inchSet (iPhoneSE2, iPhoneSE3, iPhone6, iPhone7, iPhone8)
 ```swift
 if DeviceSet.iPhone4_7inchSet.contains(DeviceDetector.shared.currentDevice) {
-  print("This is 4.7 inch")
+  print("This is 4.7inch")
 }
 ```
 
 - iPhone4inchSet (iPhoneSE1)
 ```swift
 if DeviceSet.iPhone4inchSet.contains(DeviceDetector.shared.currentDevice) {
-  print("This is 4 inch")
+  print("This is 4inch")
 }
 ```
 
@@ -63,6 +63,7 @@ DeviceDetector.shared.hasSafeArea //true or false
 if DeviceSet.iPhoneProSet.contains(DeviceDetector.shared.currentDevice) {
   print("This is iPad Pro")
 }
+```
 
 ## Environment
 Above iOS 13
