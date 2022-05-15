@@ -29,9 +29,7 @@ let package = Package(
                ]),
         .testTarget(
             name: "DeviceDetectorTests",
-            dependencies: ["DeviceDetector"],
-            resources: [
-                   .process("Resources")
-               ]),
+            dependencies: ["DeviceDetector"]
+            )
     ]
 )
