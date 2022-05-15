@@ -40,6 +40,41 @@ public final class DeviceDetector {
 }
 ```
 
+## Sample
+
+|<img width="577" alt="test3" src="https://user-images.githubusercontent.com/12643700/168486396-d028e8f3-1698-4c54-9dc8-fbbd93a15af3.png">|<img width="620" alt="test4" src="https://user-images.githubusercontent.com/12643700/168486399-5b476abb-41b0-49fb-9b67-2d7bfc7b8405.png">|<img width="359" alt="test1" src="https://user-images.githubusercontent.com/12643700/168486335-7c5aa1b1-f74d-4905-8a41-0cb8cd84ce8b.png">|<img width="375" alt="test2" src="https://user-images.githubusercontent.com/12643700/168486341-21b1214c-63bb-4749-bcf4-c81108c3b3fa.png">|
+|---|---|---|---|
+
+
+```swift
+import UIKit
+import DeviceDetector
+class ViewController: UIViewController {
+    @IBOutlet weak var label: UILabel!
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let detector = DeviceDetector.shared
+        let deviceName = detector.currentDeviceName
+        let deviceSet = detector.currentDevice
+        
+        let information = """
+        Model: \(deviceName)
+        iPhone?: \(detector.isiPhone)
+        iPad?: \(detector.isiPad)
+        Notch?: \(detector.hasSafeArea)
+        
+        4inch?: \(DeviceSet.iPhone4inchSet.contains(deviceSet))
+        4.7inch?: \(DeviceSet.iPhone4_7inchSet.contains(deviceSet))
+        iPhoneSE?: \(DeviceSet.iPhoneSESet.contains(deviceSet))
+        iPhonePlus?: \(DeviceSet.iPhonePlusSet.contains(deviceSet))
+        iPadPro?: \(DeviceSet.iPadProSet.contains(deviceSet))
+        """
+        label.text = information
+    }
+}
+```
+
 ## Features
 You can check the device model not only physical device but also simulator.
 
