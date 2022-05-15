@@ -64,10 +64,10 @@ if DeviceSet.iPhoneSafeAreaSet.contains(DeviceDetector.shared.currentDevice) {
 //Option 2. DeviceDetector.shared.hasSafeArea
 DeviceDetector.shared.hasSafeArea //true or false
 ```
-- iPhoneProSet (iPadPro9_7inch, iPadPro10_5inch, iPadPro11inch, iPadPro12_9inch)
+- iPadProSet (iPadPro9_7inch, iPadPro10_5inch, iPadPro11inch, iPadPro12_9inch)
 ```swift
 import DeviceDetector
-if DeviceSet.iPhoneProSet.contains(DeviceDetector.shared.currentDevice) {
+if DeviceSet.iPadProSet.contains(DeviceDetector.shared.currentDevice) {
   print("This is iPad Pro")
 }
 ```
