@@ -1,7 +1,6 @@
 # DeviceDetector
 
-DeviceDetector detect apple's devices(iPhone and iPad) model name by using identifier code. 
-I refered this [wiki](https://www.theiphonewiki.com/wiki/Models). It is not support old models that can't install iOS 13
+DeviceDetector detects apple's devices(iPhone and iPad) model names by using identifier code. I referred to this [wiki](https://www.theiphonewiki.com/wiki/Models). It does not support old models that can't install iOS 13
 
 ## Features
 You can check the device model not only physical device but also simulator.
