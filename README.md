@@ -8,8 +8,7 @@ You can check the device model not only physical device but also simulator.
 
 1. Check the current device
 ```swift
-//DeviceSet.iPhone11
-DeviceDetector.shared.currentDevice
+DeviceDetector.shared.currentDevice //DeviceSet.iPhone11
 ```
 
 2. Check whether iPhone or iPad
@@ -36,10 +35,41 @@ if DeviceSet.iPhonePlusSet.contains(DeviceDetector.shared.currentDevice) {
 ```
 
 - iPhone4_7inchSet (iPhoneSE2, iPhoneSE3, iPhone6, iPhone7, iPhone8)
+```swift
+if DeviceSet.iPhone4_7inchSet.contains(DeviceDetector.shared.currentDevice) {
+  print("This is 4.7 inch")
+}
+```
 
+- iPhone4inchSet (iPhoneSE1)
+```swift
+if DeviceSet.iPhone4inchSet.contains(DeviceDetector.shared.currentDevice) {
+  print("This is 4 inch")
+}
+```
+
+- iPhoneSafeAreaSet
+```swift
+//Option 1. Use DeviceSet.iPhoneSafeAreaSet
+if DeviceSet.iPhoneSafeAreaSet.contains(DeviceDetector.shared.currentDevice) {
+  print("This iPhone has safeArea")
+}
+
+//Option 2. DeviceDetector.shared.hasSafeArea
+DeviceDetector.shared.hasSafeArea //true or false
+```
+- iPhoneProSet (iPadPro9_7inch, iPadPro10_5inch, iPadPro11inch, iPadPro12_9inch)
+```swift
+if DeviceSet.iPhoneProSet.contains(DeviceDetector.shared.currentDevice) {
+  print("This is iPad Pro")
+}
 
 ## Environment
 Above iOS 13
+
+## UnitTest (23 tests)
+<img width="263" alt="tests" src="https://user-images.githubusercontent.com/12643700/168467179-b70c0117-4bc1-476b-8b99-dfaa8df051fe.png">
+
 
 ## TODO
 Support Mac and Apple Watch
