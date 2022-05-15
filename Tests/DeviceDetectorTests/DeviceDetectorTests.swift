@@ -57,11 +57,11 @@ final class DeviceDetectorTests: XCTestCase {
         let iPhone6Plus = "iPhone8,2"
         
         let iPhone6Device = DeviceDetector.shared.device(id: iPhone6)
-        XCTAssertEqual(iPhone6Device, .iPhone6)
+        XCTAssertEqual(iPhone6Device, .iPhone6S)
         XCTAssertTrue(DeviceSet.iPhoneSet.contains(iPhone6Device), "iPhone 6 should be of iPhone")
         
         let iPhone6PlusDevice = DeviceDetector.shared.device(id: iPhone6Plus)
-        XCTAssertEqual(iPhone6PlusDevice, .iPhone6Plus)
+        XCTAssertEqual(iPhone6PlusDevice, .iPhone6SPlus)
         XCTAssertTrue(DeviceSet.iPhoneSet.contains(iPhone6PlusDevice), "iPhone 6 Plus should be of iPhone")
     }
     
@@ -108,12 +108,12 @@ final class DeviceDetectorTests: XCTestCase {
         }
         
         let iPhoneXSDevice = DeviceDetector.shared.device(id: iPhoneXS)
-        XCTAssertEqual(iPhoneXSDevice, .iPhoneX)
+        XCTAssertEqual(iPhoneXSDevice, .iPhoneXS)
         XCTAssertTrue(DeviceSet.iPhoneSet.contains(iPhoneXSDevice), "iPhone XS should be of iPhone")
         
         iPhoneXSMax.forEach {
             let device = DeviceDetector.shared.device(id: $0)
-            XCTAssertEqual(device, .iPhoneXMax)
+            XCTAssertEqual(device, .iPhoneXSMax)
             XCTAssertTrue(DeviceSet.iPhoneSet.contains(device), "iPhone XS Max should be of iPhone")
         }
         
@@ -201,7 +201,7 @@ final class DeviceDetectorTests: XCTestCase {
         let iPhoneSE3rd = "iPhone14,6"
         
         let iPhone6Device = DeviceDetector.shared.device(id: iPhone6)
-        XCTAssertEqual(iPhone6Device, .iPhone6)
+        XCTAssertEqual(iPhone6Device, .iPhone6S)
         XCTAssertTrue(DeviceSet.iPhone4_7inchSet.contains(iPhone6Device), "iPhone 6 should be of iPhone4.7")
         
         iPhone7.forEach {

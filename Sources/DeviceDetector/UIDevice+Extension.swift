@@ -90,8 +90,8 @@ extension UIDevice {
         }
         else if Identifier.iPhone.old.filter({ model.contains($0) }).count > 0 {
             if model.contains(Identifier.iPhone.plus) {
-                if model.starts(with: DeviceSet.iPhone6.name) {
-                    return .iPhone6Plus
+                if model.starts(with: DeviceSet.iPhone6S.name) {
+                    return .iPhone6SPlus
                 }
                 else if model.starts(with: DeviceSet.iPhone7.name) {
                     return .iPhone7Plus
@@ -101,8 +101,8 @@ extension UIDevice {
                 }
             }
             else {
-                if model == DeviceSet.iPhone6.name {
-                    return .iPhone6
+                if model == DeviceSet.iPhone6S.name {
+                    return .iPhone6S
                 }
                 else if model == DeviceSet.iPhone7.name {
                     return .iPhone7
@@ -117,10 +117,15 @@ extension UIDevice {
                 return .iPhoneXR
             }
             else if model.contains(Identifier.iPhone.max) {
-                return .iPhoneXMax
+                return .iPhoneXSMax
             }
             else {
-                return .iPhoneX
+                if model == DeviceSet.iPhoneX.name {
+                    return .iPhoneX
+                }
+                else {
+                    return .iPhoneXS
+                }
             }
         }
         else if model.starts(with: DeviceSet.iPhone11.name) {

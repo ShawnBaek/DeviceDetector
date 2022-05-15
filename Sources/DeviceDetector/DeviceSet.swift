@@ -14,34 +14,35 @@ public struct DeviceSet: OptionSet {
     public static let unrecognized   = DeviceSet(rawValue: 1 << 0)
     
     //MARK: iPhone
-    public static let iPhone6 = DeviceSet(rawValue: 1 << 1)
-    public static let iPhone6Plus = DeviceSet(rawValue: 1 << 2)
+    public static let iPhone6S = DeviceSet(rawValue: 1 << 1)
+    public static let iPhone6SPlus = DeviceSet(rawValue: 1 << 2)
     public static let iPhone7 = DeviceSet(rawValue: 1 << 3)
     public static let iPhone7Plus = DeviceSet(rawValue: 1 << 4)
     public static let iPhone8 = DeviceSet(rawValue: 1 << 5)
     public static let iPhone8Plus = DeviceSet(rawValue: 1 << 6)
     
     public static let iPhoneX = DeviceSet(rawValue: 1 << 7)
-    public static let iPhoneXR = DeviceSet(rawValue: 1 << 8)
-    public static let iPhoneXMax = DeviceSet(rawValue: 1 << 9)
+    public static let iPhoneXS = DeviceSet(rawValue: 1 << 8)
+    public static let iPhoneXR = DeviceSet(rawValue: 1 << 9)
+    public static let iPhoneXSMax = DeviceSet(rawValue: 1 << 10)
     
-    public static let iPhone11 = DeviceSet(rawValue: 1 << 10)
-    public static let iPhone12 = DeviceSet(rawValue: 1 << 11)
-    public static let iPhone13 = DeviceSet(rawValue: 1 << 12)
+    public static let iPhone11 = DeviceSet(rawValue: 1 << 11)
+    public static let iPhone12 = DeviceSet(rawValue: 1 << 12)
+    public static let iPhone13 = DeviceSet(rawValue: 1 << 13)
     
-    public static let iPhoneSE1 = DeviceSet(rawValue: 1 << 13)
-    public static let iPhoneSE2 = DeviceSet(rawValue: 1 << 14)
-    public static let iPhoneSE3 = DeviceSet(rawValue: 1 << 15)
+    public static let iPhoneSE1 = DeviceSet(rawValue: 1 << 14)
+    public static let iPhoneSE2 = DeviceSet(rawValue: 1 << 15)
+    public static let iPhoneSE3 = DeviceSet(rawValue: 1 << 16)
     
-    public static let iPhoneMini = DeviceSet(rawValue: 1 << 16)
-    public static let iPhonePro = DeviceSet(rawValue: 1 << 17)
-    public static let iPhoneProMax = DeviceSet(rawValue: 1 << 18)
+    public static let iPhoneMini = DeviceSet(rawValue: 1 << 17)
+    public static let iPhonePro = DeviceSet(rawValue: 1 << 18)
+    public static let iPhoneProMax = DeviceSet(rawValue: 1 << 19)
     
     public static let iPhoneSESet: DeviceSet = [.iPhoneSE1, .iPhoneSE2, .iPhoneSE3]
-    public static let iPhonePlusSet: DeviceSet = [.iPhone6Plus, .iPhone7Plus, .iPhone8Plus]
-    public static let iPhone4_7inchSet: DeviceSet = [.iPhoneSE2, .iPhoneSE3, .iPhone6, .iPhone7, .iPhone8]
+    public static let iPhonePlusSet: DeviceSet = [.iPhone6SPlus, .iPhone7Plus, .iPhone8Plus]
+    public static let iPhone4_7inchSet: DeviceSet = [.iPhoneSE2, .iPhoneSE3, .iPhone6S, .iPhone7, .iPhone8]
     public static let iPhone4inchSet: DeviceSet = [.iPhoneSE1]
-    public static let iPhoneSet: DeviceSet = [.iPhoneSESet, .iPhonePlusSet, .iPhone4_7inchSet, .iPhone4inchSet, .iPhoneX, .iPhoneXR, .iPhoneXMax, .iPhone11, .iPhone12, .iPhone13, .iPhoneMini, .iPhonePro, .iPhoneProMax]
+    public static let iPhoneSet: DeviceSet = [.iPhoneSESet, .iPhonePlusSet, .iPhone4_7inchSet, .iPhone4inchSet, .iPhoneX, .iPhoneXS, .iPhoneXR, .iPhoneXSMax, .iPhone11, .iPhone12, .iPhone13, .iPhoneMini, .iPhonePro, .iPhoneProMax]
     public static let iPhoneSafeAreaSet: DeviceSet = iPhoneSet.subtracting(iPhone4inchSet).subtracting(iPhone4_7inchSet).subtracting(iPhonePlusSet)
     
     //MARK: iPad
@@ -73,7 +74,7 @@ public struct DeviceSet: OptionSet {
         switch self {
         case .iPhoneSet:
             return "iPhone"
-        case .iPhone6:
+        case .iPhone6S:
             return "iPhone 6S"
         case .iPhone7:
             return "iPhone 7"
