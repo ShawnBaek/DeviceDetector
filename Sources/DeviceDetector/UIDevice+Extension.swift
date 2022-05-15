@@ -30,7 +30,23 @@ extension UIDevice {
         }
     }
     
-    func device(id: String? = nil, dict: NSDictionary) -> DeviceSet {
+    func device(name: String?) -> DeviceSet {
+        guard let deviceName = name else {
+            return .unrecognized
+        }
+        switch deviceName {
+        case let model where model.starts(with: DeviceSet.iPhoneSet.name):
+            return iPhone(model: model)
+        case let model where model.starts(with: DeviceSet.iPadSet.name):
+            return iPad(model: model)
+        case let model where model.starts(with: DeviceSet.iPod.name):
+            return .iPod
+        default:
+            return .unrecognized
+        }
+    }
+    
+    func deviceName(id: String? = nil, dict: NSDictionary) -> String? {
         var identifier = ""
         if let id = id {
             identifier = id
@@ -45,26 +61,17 @@ extension UIDevice {
             }
         }
         guard var deviceName = dict.value(forKey: identifier) as? String else {
-            return .unrecognized
+            return nil
         }
         if deviceName == UIDevice.Identifier.simulator, let simulatorDeviceIdentifier = ProcessInfo().environment["SIMULATOR_MODEL_IDENTIFIER"] {
             if let simulatorDeviceName = dict.value(forKey: simulatorDeviceIdentifier) as? String {
                 deviceName = simulatorDeviceName
             }
             else {
-                return .unrecognized
+                return nil
             }
         }
-        switch deviceName {
-        case let model where model.starts(with: DeviceSet.iPhoneSet.name):
-            return iPhone(model: model)
-        case let model where model.starts(with: DeviceSet.iPadSet.name):
-            return iPad(model: model)
-        case let model where model.starts(with: DeviceSet.iPod.name):
-            return .iPod
-        default:
-            return .unrecognized
-        }
+        return deviceName
     }
 }
 
