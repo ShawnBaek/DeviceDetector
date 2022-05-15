@@ -66,37 +66,6 @@ extension UIDevice {
             return .unrecognized
         }
     }
-    
-//    var device: DeviceSet {
-//        var systemInfo = utsname()
-//        uname(&systemInfo)
-//        guard let appleDevices = Bundle.main.path(forResource: "Device", ofType: "plist"),
-//            let devicesDict = NSDictionary(contentsOfFile: appleDevices)
-//        else {
-//            return .unrecognized
-//        }
-//        let machineMirror = Mirror(reflecting: systemInfo.machine)
-//        let identifier = machineMirror.children.reduce("") { identifier, element in
-//            guard let value = element.value as? Int8, value != 0 else { return identifier }
-//            return identifier + String(UnicodeScalar(UInt8(value)))
-//        }
-//        guard var deviceName = devicesDict.value(forKey: identifier) as? String else {
-//            return .unrecognized
-//        }
-//        if deviceName == UIDevice.Identifier.simulator, let simulatorDeviceName = ProcessInfo().environment["SIMULATOR_MODEL_IDENTIFIER"] {
-//            deviceName = simulatorDeviceName
-//        }
-//        switch deviceName.lowercased() {
-//        case let model where model.starts(with: DeviceSet.iPhone.name):
-//            return iPhone(model: model)
-//        case let model where model.starts(with: DeviceSet.iPad.name):
-//            return iPad(model: model)
-//        case let model where model.starts(with: DeviceSet.iPod.name):
-//            return .iPod
-//        default:
-//            return .unrecognized
-//        }
-//    }
 }
 
 extension UIDevice {
