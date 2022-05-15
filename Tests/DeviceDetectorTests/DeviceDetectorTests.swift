@@ -234,6 +234,65 @@ final class DeviceDetectorTests: XCTestCase {
         }
     }
     
+    func test_iPhone_hasSafeArea() throws {
+        let iPhoneX = ["iPhone10,3", "iPhone10,6"]
+        let iPhoneXS = ["iPhone11,2"]
+        let iPhoneXSMax = ["iPhone11,4", "iPhone11,6"]
+        let iPhoneXR = ["iPhone11,8"]
+        let iPhoneXSeries = [iPhoneX, iPhoneXS, iPhoneXSMax, iPhoneXR].flatMap { $0 }
+        
+        let iPhone11 = ["iPhone12,1"]
+        let iPhone11Pro = ["iPhone12,3"]
+        let iPhone11ProMax = ["iPhone12,5"]
+        let iPhone11Series = [iPhone11, iPhone11Pro, iPhone11ProMax].flatMap { $0 }
+        
+        let iPhone12Mini = ["iPhone13,1"]
+        let iPhone12 = ["iPhone13,2"]
+        let iPhone12Pro = ["iPhone13,3"]
+        let iPhone12ProMax = ["iPhone13,4"]
+        let iPhone12Series = [iPhone12, iPhone12Pro, iPhone12ProMax, iPhone12Mini].flatMap { $0 }
+        
+        
+        let iPhone13Mini = ["iPhone14,4"]
+        let iPhone13 = ["iPhone14,5"]
+        let iPhone13Pro = ["iPhone14,2"]
+        let iPhone13ProMax = ["iPhone14,3"]
+        let iPhone13Series = [iPhone13, iPhone13Pro, iPhone13ProMax, iPhone13Mini].flatMap { $0 }
+        
+        let safeAreaModel = [iPhoneXSeries, iPhone11Series, iPhone12Series, iPhone13Series].flatMap { $0 }
+        
+        safeAreaModel.forEach {
+            let device = DeviceDetector.shared.device(id: $0)
+            XCTAssertTrue(DeviceSet.iPhoneSafeAreaSet.contains(device), "iPhone should have safeArea")
+        }
+    }
+    
+    func test_iPhone_has_no_SafeArea() throws {
+        let iPhoneSE1 = "iPhone8,4"
+        let iPhoneSE2 = "iPhone12,8"
+        let iPhoneSE3 = "iPhone14,6"
+        let iPhoneSESeries = [iPhoneSE1, iPhoneSE2, iPhoneSE3]
+        
+        let iPhone6 = "iPhone8,1"
+        let iPhone6Plus = "iPhone8,2"
+        let iPhone6Series = [iPhone6, iPhone6Plus]
+        
+        let iPhone7 = ["iPhone9,1", "iPhone9,3"]
+        let iPhone7Plus = ["iPhone9,2", "iPhone9,4"]
+        let iPhone7Series = [iPhone7, iPhone7Plus].flatMap { $0 }
+        
+        let iPhone8 = ["iPhone10,1", "iPhone10,4"]
+        let iPhone8Plus = ["iPhone10,2", "iPhone10,5"]
+        let iPhone8Series = [iPhone8, iPhone8Plus].flatMap { $0 }
+        
+        let oldModel = [iPhoneSESeries, iPhone6Series, iPhone7Series, iPhone8Series].flatMap { $0 }
+        
+        oldModel.forEach {
+            let device = DeviceDetector.shared.device(id: $0)
+            XCTAssertFalse(DeviceSet.iPhoneSafeAreaSet.contains(device), "iPhone should has no safeArea")
+        }
+    }
+    
     func test_iPad() throws {
         let iPad5th = ["iPad6,11", "iPad6,12"]
         let iPad6th = ["iPad7,5", "iPad7,6"]
