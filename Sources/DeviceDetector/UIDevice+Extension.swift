@@ -159,8 +159,8 @@ extension UIDevice {
             }
         }
         else if model.starts(with: DeviceSet.iPhone12.name) {
-            if model == DeviceSet.iPhone11.name {
-                return .iPhone11
+            if model == DeviceSet.iPhone12.name {
+                return .iPhone12
             }
             else if model.contains(Identifier.iPhone.mini) {
                 return .iPhoneMini
@@ -173,8 +173,8 @@ extension UIDevice {
             }
         }
         else if model.starts(with: DeviceSet.iPhone13.name) {
-            if model == DeviceSet.iPhone11.name {
-                return .iPhone11
+            if model == DeviceSet.iPhone13.name {
+                return .iPhone13
             }
             else if model.contains(Identifier.iPhone.mini) {
                 return .iPhoneMini

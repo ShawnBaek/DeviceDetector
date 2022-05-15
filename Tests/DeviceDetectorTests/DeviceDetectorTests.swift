@@ -122,7 +122,46 @@ final class DeviceDetectorTests: XCTestCase {
         XCTAssertTrue(DeviceSet.iPhoneSet.contains(iPhoneXRDevice), "iPhone XR should be of iPhone")
     }
     
+    func test_iPhone11() throws {
+        let iPhone11 = "iPhone12,1"
+        let iPhone11Pro = "iPhone12,3"
+        let iPhone11ProMax = "iPhone12,5"
+        
+        let iPhone11Device = DeviceDetector.shared.device(id: iPhone11)
+        XCTAssertEqual(iPhone11Device, .iPhone11)
+        XCTAssertTrue(DeviceSet.iPhoneSet.contains(iPhone11Device), "iPhone 11 should be of iPhone")
+        
+        let iPhone11ProDevice = DeviceDetector.shared.device(id: iPhone11Pro)
+        XCTAssertEqual(iPhone11ProDevice, .iPhonePro)
+        XCTAssertTrue(DeviceSet.iPhoneSet.contains(iPhone11ProDevice), "iPhone 11 Pro should be of iPhone")
+        
+        let iPhone11ProMaxDevice = DeviceDetector.shared.device(id: iPhone11ProMax)
+        XCTAssertEqual(iPhone11ProMaxDevice, .iPhoneProMax)
+        XCTAssertTrue(DeviceSet.iPhoneSet.contains(iPhone11ProMaxDevice), "iPhone 11 Pro Max should be of iPhone")
+    }
     
+    func test_iPhone12() throws {
+        let iPhone12Mini = "iPhone13,1"
+        let iPhone12 = "iPhone13,2"
+        let iPhone12Pro = "iPhone13,3"
+        let iPhone12ProMax = "iPhone13,4"
+        
+        let iPhone12MiniDevice = DeviceDetector.shared.device(id: iPhone12Mini)
+        XCTAssertEqual(iPhone12MiniDevice, .iPhoneMini)
+        XCTAssertTrue(DeviceSet.iPhoneSet.contains(iPhone12MiniDevice), "iPhone 12 mini should be of iPhone")
+        
+        let iPhone12Device = DeviceDetector.shared.device(id: iPhone12)
+        XCTAssertEqual(iPhone12Device, .iPhone12)
+        XCTAssertTrue(DeviceSet.iPhoneSet.contains(iPhone12Device), "iPhone 12 should be of iPhone")
+        
+        let iPhone12ProDevice = DeviceDetector.shared.device(id: iPhone12Pro)
+        XCTAssertEqual(iPhone12ProDevice, .iPhonePro)
+        XCTAssertTrue(DeviceSet.iPhoneSet.contains(iPhone12ProDevice), "iPhone 12 Pro should be of iPhone")
+        
+        let iPhone12ProMaxDevice = DeviceDetector.shared.device(id: iPhone12ProMax)
+        XCTAssertEqual(iPhone12ProMaxDevice, .iPhoneProMax)
+        XCTAssertTrue(DeviceSet.iPhoneSet.contains(iPhone12ProMaxDevice), "iPhone 12 Pro Max should be of iPhone")
+    }
     
     func test_iPhone4_7inch() throws {
         let iPhone6 = "iPhone8,1"
