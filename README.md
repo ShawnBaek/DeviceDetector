@@ -8,11 +8,13 @@ You can check the device model not only physical device but also simulator.
 
 1. Check the current device
 ```swift
+import DeviceDetector
 DeviceDetector.shared.currentDevice //DeviceSet.iPhone11
 ```
 
 2. Check whether iPhone or iPad
 ```swift
+import DeviceDetector
 DeviceDetector.shared.isiPhone //true or false
 DeviceDetector.shared.isiPad //true or false
 ```
@@ -22,6 +24,7 @@ It uses OptionSet. You can check Is your model subset of the device groups.
 
 - iPhoneSESet (iPhoneSE1, iPhoneSE2, iPhoneSE3)
 ```swift
+import DeviceDetector
 if DeviceSet.iPhoneSESet.contains(DeviceDetector.shared.currentDevice) {
   print("This is iPhoneSE")
 }
@@ -29,6 +32,7 @@ if DeviceSet.iPhoneSESet.contains(DeviceDetector.shared.currentDevice) {
 
 - iPhonePlusSet (iPhone6Plus, iPhone7Plus, iPhone8Plus)
 ```swift
+import DeviceDetector
 if DeviceSet.iPhonePlusSet.contains(DeviceDetector.shared.currentDevice) {
   print("This is iPhonePlus")
 }
@@ -36,6 +40,7 @@ if DeviceSet.iPhonePlusSet.contains(DeviceDetector.shared.currentDevice) {
 
 - iPhone4_7inchSet (iPhoneSE2, iPhoneSE3, iPhone6, iPhone7, iPhone8)
 ```swift
+import DeviceDetector
 if DeviceSet.iPhone4_7inchSet.contains(DeviceDetector.shared.currentDevice) {
   print("This is 4.7inch")
 }
@@ -43,6 +48,7 @@ if DeviceSet.iPhone4_7inchSet.contains(DeviceDetector.shared.currentDevice) {
 
 - iPhone4inchSet (iPhoneSE1)
 ```swift
+import DeviceDetector
 if DeviceSet.iPhone4inchSet.contains(DeviceDetector.shared.currentDevice) {
   print("This is 4inch")
 }
@@ -50,6 +56,7 @@ if DeviceSet.iPhone4inchSet.contains(DeviceDetector.shared.currentDevice) {
 
 - iPhoneSafeAreaSet
 ```swift
+import DeviceDetector
 //Option 1. Use DeviceSet.iPhoneSafeAreaSet
 if DeviceSet.iPhoneSafeAreaSet.contains(DeviceDetector.shared.currentDevice) {
   print("This iPhone has safeArea")
@@ -60,6 +67,7 @@ DeviceDetector.shared.hasSafeArea //true or false
 ```
 - iPhoneProSet (iPadPro9_7inch, iPadPro10_5inch, iPadPro11inch, iPadPro12_9inch)
 ```swift
+import DeviceDetector
 if DeviceSet.iPhoneProSet.contains(DeviceDetector.shared.currentDevice) {
   print("This is iPad Pro")
 }
@@ -67,6 +75,9 @@ if DeviceSet.iPhoneProSet.contains(DeviceDetector.shared.currentDevice) {
 
 ## Environment
 Above iOS 13
+
+## How to install, SPM
+Use Swift Package Manager
 
 ## UnitTest (23 tests)
 <img width="263" alt="tests" src="https://user-images.githubusercontent.com/12643700/168467179-b70c0117-4bc1-476b-8b99-dfaa8df051fe.png">
