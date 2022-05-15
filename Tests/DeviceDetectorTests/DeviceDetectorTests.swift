@@ -195,8 +195,25 @@ final class DeviceDetectorTests: XCTestCase {
         
         let iPhone6Device = DeviceDetector.shared.device(id: iPhone6)
         XCTAssertEqual(iPhone6Device, .iPhone6)
-        XCTAssertTrue(DeviceSet.iPhone4_7inchSet.contains(iPhone6Device), "iPhone6 should be of iPhone4.7")
+        XCTAssertTrue(DeviceSet.iPhone4_7inchSet.contains(iPhone6Device), "iPhone 6 should be of iPhone4.7")
         
+        iPhone7.forEach {
+            let device = DeviceDetector.shared.device(id: $0)
+            XCTAssertEqual(device, .iPhone7)
+            XCTAssertTrue(DeviceSet.iPhone4_7inchSet.contains(device), "iPhone 7 should be of iPhone4.7")
+        }
+        
+        iPhone8.forEach {
+            let device = DeviceDetector.shared.device(id: $0)
+            XCTAssertEqual(device, .iPhone8)
+            XCTAssertTrue(DeviceSet.iPhone4_7inchSet.contains(device), "iPhone 8 should be of iPhone4.7")
+        }
+        
+        [iPhoneSE2nd, iPhoneSE3rd].forEach {
+            let device = DeviceDetector.shared.device(id: $0)
+            XCTAssertTrue(DeviceSet.iPhoneSESet.contains(device), "iPhone SE should be of iPhoneSE")
+            XCTAssertTrue(DeviceSet.iPhone4_7inchSet.contains(device), "iPhone 8 should be of iPhone4.7")
+        }
     }
     
     func test_iPad() throws {
