@@ -37,11 +37,11 @@ public struct DeviceSet: OptionSet {
     static let iPhonePro = DeviceSet(rawValue: 1 << 17)
     static let iPhoneProMax = DeviceSet(rawValue: 1 << 18)
     
-    static let iPhoneSE: DeviceSet = [.iPhoneSE1, .iPhoneSE2, .iPhoneSE3]
-    static let iPhonePlus: DeviceSet = [.iPhone6Plus, .iPhone7Plus, .iPhone8Plus]
-    static let iPhone4_7inch: DeviceSet = [.iPhoneSE2, .iPhoneSE3, .iPhone6, .iPhone7, .iPhone8]
-    static let iPhone4inch: DeviceSet = [.iPhoneSE1]
-    static let iPhone: DeviceSet = [.iPhoneSE, .iPhonePlus, .iPhone4_7inch, .iPhone4inch, .iPhoneX, .iPhoneXR, .iPhoneXMax, .iPhone11, .iPhone12, .iPhone13, .iPhoneMini, .iPhonePro, .iPhoneProMax]
+    static let iPhoneSESet: DeviceSet = [.iPhoneSE1, .iPhoneSE2, .iPhoneSE3]
+    static let iPhonePlusSet: DeviceSet = [.iPhone6Plus, .iPhone7Plus, .iPhone8Plus]
+    static let iPhone4_7inchSet: DeviceSet = [.iPhoneSE2, .iPhoneSE3, .iPhone6, .iPhone7, .iPhone8]
+    static let iPhone4inchSet: DeviceSet = [.iPhoneSE1]
+    static let iPhoneSet: DeviceSet = [.iPhoneSESet, .iPhonePlusSet, .iPhone4_7inchSet, .iPhone4inchSet, .iPhoneX, .iPhoneXR, .iPhoneXMax, .iPhone11, .iPhone12, .iPhone13, .iPhoneMini, .iPhonePro, .iPhoneProMax]
     
     //MARK: iPad
     static let iPad5    = DeviceSet(rawValue: 1 << 50)
@@ -70,7 +70,7 @@ public struct DeviceSet: OptionSet {
     
     var name: String {
         switch self {
-        case .iPhone:
+        case .iPhoneSet:
             return "iPhone"
         case .iPhone6:
             return "iPhone 6S"
@@ -88,8 +88,14 @@ public struct DeviceSet: OptionSet {
             return "iPhone 12"
         case .iPhone13:
             return "iPhone 13"
-        case .iPhoneSE:
+        case .iPhoneSESet:
             return "iPhone SE"
+        case .iPhoneSE1:
+            return "iPhone SE (1st generation)"
+        case .iPhoneSE2:
+            return "iPhone SE (2nd generation)"
+        case .iPhoneSE3:
+            return "iPhone SE (3rd generation)"
         case .iPad:
             return "iPad"
         case .iPad5:

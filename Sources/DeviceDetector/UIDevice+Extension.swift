@@ -56,7 +56,7 @@ extension UIDevice {
             }
         }
         switch deviceName {
-        case let model where model.starts(with: DeviceSet.iPhone.name):
+        case let model where model.starts(with: DeviceSet.iPhoneSet.name):
             return iPhone(model: model)
         case let model where model.starts(with: DeviceSet.iPad.name):
             return iPad(model: model)
@@ -101,12 +101,15 @@ extension UIDevice {
 
 extension UIDevice {
     private func iPhone(model: String) -> DeviceSet {
-        if model.starts(with: DeviceSet.iPhoneSE.name) {
-            if model == DeviceSet.iPhoneSE.name {
+        if model.starts(with: DeviceSet.iPhoneSESet.name) {
+            if model == DeviceSet.iPhoneSE1.name {
                 return .iPhoneSE1
             }
-            else {
+            else if model == DeviceSet.iPhoneSE2.name {
                 return .iPhoneSE2
+            }
+            else {
+                return .iPhoneSE3
             }
         }
         else if Identifier.iPhone.old.filter({ model.contains($0) }).count > 0 {
