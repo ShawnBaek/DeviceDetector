@@ -52,17 +52,17 @@ final class DeviceDetectorTests: XCTestCase {
     }
     
     func test_iPadAir() throws {
-        let iPaAir2 = ["iPad5,3", "iPad5,4"]
-        let iPaAir3rd = ["iPad11,3", "iPad11,4"]
+        let iPadAir2 = ["iPad5,3", "iPad5,4"]
+        let iPadAir3rd = ["iPad11,3", "iPad11,4"]
         let iPadAir4th = ["iPad13,1", "iPad13,2"]
         let iPadAir5th = ["iPad13,16", "iPad13,17"]
         
-        iPaAir2.forEach {
+        iPadAir2.forEach {
             let device = DeviceDetector.shared.device(id: $0)
             XCTAssertEqual(device, .iPadAir)
             XCTAssertTrue(DeviceSet.iPad.contains(device), "iPad Air 2 should be of iPad")
         }
-        iPaAir3rd.forEach {
+        iPadAir3rd.forEach {
             let device = DeviceDetector.shared.device(id: $0)
             XCTAssertEqual(device, .iPadAir)
             XCTAssertTrue(DeviceSet.iPad.contains(device), "iPad Air (3rd generation) should be of iPad")
@@ -76,6 +76,28 @@ final class DeviceDetectorTests: XCTestCase {
             let device = DeviceDetector.shared.device(id: $0)
             XCTAssertEqual(device, .iPadAir)
             XCTAssertTrue(DeviceSet.iPad.contains(device), "iPad Air (5th generation) should be of iPad")
+        }
+    }
+    
+    func test_iPadMini() throws {
+        let iPadMini4 = ["iPad5,1", "iPad5,2"]
+        let iPadMini5th = ["iPad11,1", "iPad11,2"]
+        let iPadMini6th = ["iPad14,1", "iPad14,2"]
+        
+        iPadMini4.forEach {
+            let device = DeviceDetector.shared.device(id: $0)
+            XCTAssertEqual(device, .iPadMini)
+            XCTAssertTrue(DeviceSet.iPad.contains(device), "iPad mini 4 should be of iPad")
+        }
+        iPadMini5th.forEach {
+            let device = DeviceDetector.shared.device(id: $0)
+            XCTAssertEqual(device, .iPadMini)
+            XCTAssertTrue(DeviceSet.iPad.contains(device), "iPad mini (4th generation) should be of iPad")
+        }
+        iPadMini6th.forEach {
+            let device = DeviceDetector.shared.device(id: $0)
+            XCTAssertEqual(device, .iPadMini)
+            XCTAssertTrue(DeviceSet.iPad.contains(device), "iPad mini (6th generation) should be of iPad")
         }
     }
 }
