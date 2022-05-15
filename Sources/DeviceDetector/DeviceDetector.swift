@@ -13,6 +13,7 @@ public final class DeviceDetector {
     public let currentDevice: DeviceSet
     public let isiPad: Bool
     public let isiPhone: Bool
+    public let hasSafeArea: Bool
     private let deviceDict: NSDictionary
     private init() {
         if let appleDevices = Bundle.module.path(forResource: "Device", ofType: "plist"),
@@ -25,6 +26,12 @@ public final class DeviceDetector {
         currentDevice = UIDevice.current.device(dict: deviceDict)
         isiPad = DeviceSet.iPadSet.contains(currentDevice)
         isiPhone = DeviceSet.iPhoneSet.contains(currentDevice)
+        if isiPhone, DeviceSet.iPhoneSafeAreaSet.contains(currentDevice) {
+            hasSafeArea = true
+        }
+        else {
+            hasSafeArea = false
+        }
     }
     
     public func device(id: String) -> DeviceSet {
