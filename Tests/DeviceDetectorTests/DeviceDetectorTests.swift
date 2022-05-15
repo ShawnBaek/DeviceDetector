@@ -147,4 +147,47 @@ final class DeviceDetectorTests: XCTestCase {
             XCTAssertTrue(DeviceSet.iPad.contains(device), "iPad Pro (11-inch)(3rd generation) should be of iPad")
         }
     }
+    
+    func test_iPadPro12_9inch() throws {
+        let iPadPro12_9inch = ["iPad6,7", "iPad6,8"]
+        let iPadPro12_9inch2nd = ["iPad7,1", "iPad7,2"]
+        let iPadPro12_9inch3rd = ["iPad8,5", "iPad8,6", "iPad8,7", "iPad8,8"]
+        let iPadPro12_9inch4th = ["iPad8,11", "iPad8,12"]
+        let iPadPro12_9inch5th = ["iPad13,8", "iPad13,9", "iPad13,10", "iPad13,11"]
+        
+        iPadPro12_9inch.forEach {
+            let device = DeviceDetector.shared.device(id: $0)
+            XCTAssertEqual(device, .iPadPro12_9inch)
+            XCTAssertTrue(DeviceSet.iPadPro.contains(device), "iPad Pro (12.9-inch) should be of iPad Pro")
+            XCTAssertTrue(DeviceSet.iPad.contains(device), "iPad Pro (12.9-inch) should be of iPad")
+        }
+        
+        iPadPro12_9inch2nd.forEach {
+            let device = DeviceDetector.shared.device(id: $0)
+            XCTAssertEqual(device, .iPadPro12_9inch)
+            XCTAssertTrue(DeviceSet.iPadPro.contains(device), "iPad Pro (12.9-inch)(2nd generation) should be of iPad Pro")
+            XCTAssertTrue(DeviceSet.iPad.contains(device), "iPad Pro (12.9-inch)(2nd generation) should be of iPad")
+        }
+        
+        iPadPro12_9inch3rd.forEach {
+            let device = DeviceDetector.shared.device(id: $0)
+            XCTAssertEqual(device, .iPadPro12_9inch)
+            XCTAssertTrue(DeviceSet.iPadPro.contains(device), "iPad Pro (12.9-inch)(3rd generation) should be of iPad Pro")
+            XCTAssertTrue(DeviceSet.iPad.contains(device), "iPad Pro (12.9-inch)(3rd generation) should be of iPad")
+        }
+        
+        iPadPro12_9inch4th.forEach {
+            let device = DeviceDetector.shared.device(id: $0)
+            XCTAssertEqual(device, .iPadPro12_9inch)
+            XCTAssertTrue(DeviceSet.iPadPro.contains(device), "iPad Pro (12.9-inch)(4th generation) should be of iPad Pro")
+            XCTAssertTrue(DeviceSet.iPad.contains(device), "iPad Pro (12.9-inch)(4th generation) should be of iPad")
+        }
+        
+        iPadPro12_9inch5th.forEach {
+            let device = DeviceDetector.shared.device(id: $0)
+            XCTAssertEqual(device, .iPadPro12_9inch)
+            XCTAssertTrue(DeviceSet.iPadPro.contains(device), "iPad Pro (12.9-inch)(5th generation) should be of iPad Pro")
+            XCTAssertTrue(DeviceSet.iPad.contains(device), "iPad Pro (12.9-inch)(5th generation) should be of iPad")
+        }
+    }
 }
