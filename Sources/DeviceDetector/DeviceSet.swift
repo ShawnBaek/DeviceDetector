@@ -73,7 +73,7 @@ public struct DeviceSet: OptionSet {
         case .iPhone:
             return "iPhone"
         case .iPhone6:
-            return "iPhone 6"
+            return "iPhone 6S"
         case .iPhone7:
             return "iPhone 7"
         case .iPhone8:

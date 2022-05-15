@@ -110,7 +110,7 @@ extension UIDevice {
             }
         }
         else if Identifier.iPhone.old.filter({ model.contains($0) }).count > 0 {
-            if Identifier.iPhone.plus.filter( { model.contains($0)}).count > 0 {
+            if model.contains(Identifier.iPhone.plus) {
                 if model.starts(with: DeviceSet.iPhone6.name) {
                     return .iPhone6Plus
                 }
