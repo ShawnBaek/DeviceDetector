@@ -49,7 +49,7 @@ import DeviceDetector
 DeviceDetector.shared.currentDevice //DeviceSet.iPhone11
 ```
 
-2. current device name (String)
+2. Check the current device name (String)
 ```swift
 import DeviceDetector
 DeviceDetector.shared.currentDeviceName //iPhone11
