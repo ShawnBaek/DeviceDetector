@@ -25,6 +25,12 @@ final class DeviceDetectorTests: XCTestCase {
         }
     }
     
+    func test_iPod() throws {
+        let iPod7th = "iPod9,1"
+        let device = DeviceDetector.shared.device(id: iPod7th)
+        XCTAssertEqual(device, .iPod)
+    }
+    
     func test_iPad() throws {
         let iPad5th = ["iPad6,11", "iPad6,12"]
         let iPad6th = ["iPad7,5", "iPad7,6"]
