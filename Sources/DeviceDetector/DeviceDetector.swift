@@ -11,6 +11,7 @@ import UIKit
 public final class DeviceDetector {
     public static let shared = DeviceDetector()
     public let currentDevice: DeviceSet
+    public let currentDeviceName: String
     public let isiPad: Bool
     public let isiPhone: Bool
     public let hasSafeArea: Bool
@@ -23,7 +24,8 @@ public final class DeviceDetector {
         else {
             deviceDict = [:]
         }
-        currentDevice = UIDevice.current.device(dict: deviceDict)
+        currentDeviceName = UIDevice.current.deviceName(dict: deviceDict) ?? ""
+        currentDevice = UIDevice.current.device(name: currentDeviceName)
         isiPad = DeviceSet.iPadSet.contains(currentDevice)
         isiPhone = DeviceSet.iPhoneSet.contains(currentDevice)
         if isiPhone, DeviceSet.iPhoneSafeAreaSet.contains(currentDevice) {
@@ -35,6 +37,9 @@ public final class DeviceDetector {
     }
     
     public func device(id: String) -> DeviceSet {
-        UIDevice.current.device(id: id, dict: deviceDict)
+        guard let deviceName = UIDevice.current.deviceName(id: id, dict: deviceDict) else {
+            return .unrecognized
+        }
+        return UIDevice.current.device(name: deviceName)
     }
 }
