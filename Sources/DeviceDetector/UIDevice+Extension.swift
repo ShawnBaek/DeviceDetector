@@ -56,9 +56,9 @@ extension UIDevice {
             }
         }
         switch deviceName {
-        case let model where model.starts(with: DeviceSet.iPhone.name):
+        case let model where model.starts(with: DeviceSet.iPhoneSet.name):
             return iPhone(model: model)
-        case let model where model.starts(with: DeviceSet.iPad.name):
+        case let model where model.starts(with: DeviceSet.iPadSet.name):
             return iPad(model: model)
         case let model where model.starts(with: DeviceSet.iPod.name):
             return .iPod
@@ -101,16 +101,19 @@ extension UIDevice {
 
 extension UIDevice {
     private func iPhone(model: String) -> DeviceSet {
-        if model.starts(with: DeviceSet.iPhoneSE.name) {
-            if model == DeviceSet.iPhoneSE.name {
+        if model.starts(with: DeviceSet.iPhoneSESet.name) {
+            if model == DeviceSet.iPhoneSE1.name {
                 return .iPhoneSE1
             }
-            else {
+            else if model == DeviceSet.iPhoneSE2.name {
                 return .iPhoneSE2
+            }
+            else {
+                return .iPhoneSE3
             }
         }
         else if Identifier.iPhone.old.filter({ model.contains($0) }).count > 0 {
-            if Identifier.iPhone.plus.filter( { model.contains($0)}).count > 0 {
+            if model.contains(Identifier.iPhone.plus) {
                 if model.starts(with: DeviceSet.iPhone6.name) {
                     return .iPhone6Plus
                 }
@@ -156,8 +159,8 @@ extension UIDevice {
             }
         }
         else if model.starts(with: DeviceSet.iPhone12.name) {
-            if model == DeviceSet.iPhone11.name {
-                return .iPhone11
+            if model == DeviceSet.iPhone12.name {
+                return .iPhone12
             }
             else if model.contains(Identifier.iPhone.mini) {
                 return .iPhoneMini
@@ -170,8 +173,8 @@ extension UIDevice {
             }
         }
         else if model.starts(with: DeviceSet.iPhone13.name) {
-            if model == DeviceSet.iPhone11.name {
-                return .iPhone11
+            if model == DeviceSet.iPhone13.name {
+                return .iPhone13
             }
             else if model.contains(Identifier.iPhone.mini) {
                 return .iPhoneMini

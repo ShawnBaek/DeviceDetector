@@ -23,8 +23,8 @@ public final class DeviceDetector {
             deviceDict = [:]
         }
         currentDevice = UIDevice.current.device(dict: deviceDict)
-        isiPad = DeviceSet.iPad.contains(currentDevice)
-        isiPhone = DeviceSet.iPhone.contains(currentDevice)
+        isiPad = DeviceSet.iPadSet.contains(currentDevice)
+        isiPhone = DeviceSet.iPhoneSet.contains(currentDevice)
     }
     
     public func device(id: String) -> DeviceSet {
