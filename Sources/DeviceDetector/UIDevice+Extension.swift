@@ -58,7 +58,7 @@ extension UIDevice {
         switch deviceName {
         case let model where model.starts(with: DeviceSet.iPhoneSet.name):
             return iPhone(model: model)
-        case let model where model.starts(with: DeviceSet.iPad.name):
+        case let model where model.starts(with: DeviceSet.iPadSet.name):
             return iPad(model: model)
         case let model where model.starts(with: DeviceSet.iPod.name):
             return .iPod
