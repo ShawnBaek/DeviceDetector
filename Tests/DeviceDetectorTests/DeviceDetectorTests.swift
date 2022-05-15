@@ -31,6 +31,27 @@ final class DeviceDetectorTests: XCTestCase {
         XCTAssertEqual(device, .iPod)
     }
     
+    func test_iPhoneSE() throws {
+        let iPhoneSE1 = "iPhone8,4"
+        let iPhoneSE2 = "iPhone12,8"
+        let iPhoneSE3 = "iPhone14,6"
+        
+        let iPhoneSE1Device = DeviceDetector.shared.device(id: iPhoneSE1)
+        XCTAssertEqual(iPhoneSE1Device, .iPhoneSE1)
+        XCTAssertTrue(DeviceSet.iPhoneSet.contains(iPhoneSE1Device), "iPhone SE (1st generation) should be of iPhone")
+        XCTAssertTrue(DeviceSet.iPhoneSESet.contains(iPhoneSE1Device), "iPhone SE (1st generation) should be of iPhoneSE")
+        
+        let iPhoneSE2Device = DeviceDetector.shared.device(id: iPhoneSE2)
+        XCTAssertEqual(iPhoneSE2Device, .iPhoneSE2)
+        XCTAssertTrue(DeviceSet.iPhoneSet.contains(iPhoneSE2Device), "iPhone SE (2nd generation) should be of iPhone")
+        XCTAssertTrue(DeviceSet.iPhoneSESet.contains(iPhoneSE2Device), "iPhone SE (2nd generation) should be of iPhoneSE")
+        
+        let iPhoneSE3Device = DeviceDetector.shared.device(id: iPhoneSE3)
+        XCTAssertEqual(iPhoneSE3Device, .iPhoneSE3)
+        XCTAssertTrue(DeviceSet.iPhoneSet.contains(iPhoneSE3Device), "iPhone SE (3rd generation) should be of iPhone")
+        XCTAssertTrue(DeviceSet.iPhoneSESet.contains(iPhoneSE3Device), "iPhone SE (3rd generation) should be of iPhoneSE")
+    }
+    
     func test_iPhone6() throws {
         let iPhone6 = "iPhone8,1"
         let iPhone6Plus = "iPhone8,2"
@@ -99,8 +120,9 @@ final class DeviceDetectorTests: XCTestCase {
         let iPhoneXRDevice = DeviceDetector.shared.device(id: iPhoneXR)
         XCTAssertEqual(iPhoneXRDevice, .iPhoneXR)
         XCTAssertTrue(DeviceSet.iPhoneSet.contains(iPhoneXRDevice), "iPhone XR should be of iPhone")
-        
     }
+    
+    
     
     func test_iPhone4_7inch() throws {
         let iPhone6 = "iPhone8,1"
