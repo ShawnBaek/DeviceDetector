@@ -4,9 +4,9 @@ DeviceDetector detects apple's devices(iPhone and iPad) model names by using ide
 
 ```swift
 public final class DeviceDetector {
-    public static let shared = DeviceDetector()
-    public let currentDevice: DeviceSet
-    public let currentDeviceName: String
+    public static let current = DeviceDetector()
+    public let deviceSet: DeviceSet
+    public let deviceName: String
     public let isiPad: Bool
     public let isiPhone: Bool
     public let hasSafeArea: Bool
@@ -19,11 +19,11 @@ public final class DeviceDetector {
         else {
             deviceDict = [:]
         }
-        currentDeviceName = UIDevice.current.deviceName(dict: deviceDict) ?? ""
-        currentDevice = UIDevice.current.device(name: currentDeviceName)
-        isiPad = currentDevice.isSubset(of: .iPadSet)
-        isiPhone = currentDevice.isSubset(of: .iPhoneSet)
-        if isiPhone, currentDevice.isSubset(of: iPhoneSafeAreaSet) {
+        deviceName = UIDevice.current.deviceName(dict: deviceDict) ?? ""
+        deviceSet = UIDevice.current.device(name: deviceName)
+        isiPad = deviceSet.isSubset(of: .iPadSet)
+        isiPhone = deviceSet.isSubset(of: .iPhoneSet)
+        if isiPhone, deviceSet.isSubset(of: .iPhoneSafeAreaSet) {
             hasSafeArea = true
         }
         else {
@@ -54,9 +54,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let detector = DeviceDetector.shared
-        let deviceName = detector.currentDeviceName
-        let deviceSet = detector.currentDevice
+        let detector = DeviceDetector.current
+        let deviceName = detector.deviceName
+        let deviceSet = detector.deviceSet
         
         let information = """
         Model: \(deviceName)
@@ -81,20 +81,20 @@ You can check the device model not only physical device but also simulator.
 1. Check the current device
 ```swift
 import DeviceDetector
-DeviceDetector.shared.currentDevice //DeviceSet.iPhone11
+DeviceDetector.current.deviceSet //DeviceSet.iPhone11
 ```
 
 2. Check the current device name (String)
 ```swift
 import DeviceDetector
-DeviceDetector.shared.currentDeviceName //iPhone11
+DeviceDetector.current.deviceName //iPhone11
 ```
 
 3. Check whether iPhone or iPad
 ```swift
 import DeviceDetector
-DeviceDetector.shared.isiPhone //true or false
-DeviceDetector.shared.isiPad //true or false
+DeviceDetector.current.isiPhone //true or false
+DeviceDetector.current.isiPad //true or false
 ```
 
 4. Device Groups
@@ -103,7 +103,7 @@ It uses OptionSet. You can check Is your model subset of the device groups.
 - iPhoneSESet (iPhoneSE1, iPhoneSE2, iPhoneSE3)
 ```swift
 import DeviceDetector
-if DeviceDetector.shared.currentDevice.isSubset(of: .iPhoneSESet) {
+if DeviceDetector.current.deviceSet.isSubset(of: .iPhoneSESet) {
   print("This is iPhoneSE")
 }
 ```
@@ -111,7 +111,7 @@ if DeviceDetector.shared.currentDevice.isSubset(of: .iPhoneSESet) {
 - iPhonePlusSet (iPhone6Plus, iPhone7Plus, iPhone8Plus)
 ```swift
 import DeviceDetector
-if DeviceDetector.shared.currentDevice.isSubset(of: .iPhonePlusSet) {
+if DeviceDetector.current.deviceSet.isSubset(of: .iPhonePlusSet) {
   print("This is iPhonePlus")
 }
 ```
@@ -119,7 +119,7 @@ if DeviceDetector.shared.currentDevice.isSubset(of: .iPhonePlusSet) {
 - iPhone4_7inchSet (iPhoneSE2, iPhoneSE3, iPhone6, iPhone7, iPhone8)
 ```swift
 import DeviceDetector
-if DeviceDetector.shared.currentDevice.isSubset(of: .iPhone4_7inchSet) {
+if DeviceDetector.current.deviceSet.isSubset(of: .iPhone4_7inchSet) {
   print("This is 4.7inch")
 }
 ```
@@ -127,7 +127,7 @@ if DeviceDetector.shared.currentDevice.isSubset(of: .iPhone4_7inchSet) {
 - iPhone4inchSet (iPhoneSE1)
 ```swift
 import DeviceDetector
-if DeviceDetector.shared.currentDevice.isSubset(of: .iPhone4inchSet) {
+if DeviceDetector.current.deviceSet.isSubset(of: .iPhone4inchSet) {
   print("This is 4inch")
 }
 ```
@@ -136,17 +136,17 @@ if DeviceDetector.shared.currentDevice.isSubset(of: .iPhone4inchSet) {
 ```swift
 import DeviceDetector
 //Option 1. Use DeviceSet.iPhoneSafeAreaSet
-if DeviceDetector.shared.currentDevice.isSubset(of: .iPhoneSafeAreaSet) {
+if DeviceDetector.current.deviceSet.isSubset(of: .iPhoneSafeAreaSet) {
   print("This iPhone has safeArea")
 }
 
 //Option 2. DeviceDetector.shared.hasSafeArea
-DeviceDetector.shared.hasSafeArea //true or false
+DeviceDetector.current.hasSafeArea //true or false
 ```
 - iPadProSet (iPadPro9_7inch, iPadPro10_5inch, iPadPro11inch, iPadPro12_9inch)
 ```swift
 import DeviceDetector
-if DeviceDetector.shared.currentDevice.isSubset(of: .iPadProSet) {
+if DeviceDetector.current.deviceSet.isSubset(of: .iPadProSet) {
   print("This is iPad Pro")
 }
 ```
