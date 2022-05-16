@@ -9,9 +9,9 @@ import Foundation
 import UIKit
 
 public final class DeviceDetector {
-    public static let shared = DeviceDetector()
-    public let currentDevice: DeviceSet
-    public let currentDeviceName: String
+    public static let current = DeviceDetector()
+    public let deviceSet: DeviceSet
+    public let deviceName: String
     public let isiPad: Bool
     public let isiPhone: Bool
     public let hasSafeArea: Bool
@@ -24,11 +24,11 @@ public final class DeviceDetector {
         else {
             deviceDict = [:]
         }
-        currentDeviceName = UIDevice.current.deviceName(dict: deviceDict) ?? ""
-        currentDevice = UIDevice.current.device(name: currentDeviceName)
-        isiPad = DeviceSet.iPadSet.contains(currentDevice)
-        isiPhone = DeviceSet.iPhoneSet.contains(currentDevice)
-        if isiPhone, DeviceSet.iPhoneSafeAreaSet.contains(currentDevice) {
+        deviceName = UIDevice.current.deviceName(dict: deviceDict) ?? ""
+        deviceSet = UIDevice.current.device(name: deviceName)
+        isiPad = deviceSet.isSubset(of: .iPadSet)
+        isiPhone = deviceSet.isSubset(of: .iPhoneSet)
+        if isiPhone, deviceSet.isSubset(of: .iPhoneSafeAreaSet) {
             hasSafeArea = true
         }
         else {
