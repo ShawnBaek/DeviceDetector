@@ -5,13 +5,13 @@ DeviceDetector detects apple's devices(iPhone and iPad) model names by using ide
 ```swift
 public final class DeviceDetector {
     public static let current = DeviceDetector()
-    public let deviceSet: DeviceSet
+    public let device: DeviceOptionSet
     public let deviceName: String
     public let isiPad: Bool
     public let isiPhone: Bool
     public let hasSafeArea: Bool
     private let deviceDict: NSDictionary
-    private init() {
+    private init(identifier: String? = nil) {
         if let appleDevices = Bundle.module.path(forResource: "Device", ofType: "plist"),
            let dict = NSDictionary(contentsOfFile: appleDevices) {
             deviceDict = dict
@@ -19,11 +19,11 @@ public final class DeviceDetector {
         else {
             deviceDict = [:]
         }
-        deviceName = UIDevice.current.deviceName(dict: deviceDict) ?? ""
-        deviceSet = UIDevice.current.device(name: deviceName)
-        isiPad = deviceSet.isSubset(of: .iPadSet)
-        isiPhone = deviceSet.isSubset(of: .iPhoneSet)
-        if isiPhone, deviceSet.isSubset(of: .iPhoneSafeAreaSet) {
+        deviceName = UIDevice.current.deviceName(id: identifier, dict: deviceDict) ?? ""
+        device = UIDevice.current.device(name: deviceName)
+        isiPad = device.isSubset(of: .iPadSet)
+        isiPhone = device.isSubset(of: .iPhoneSet)
+        if isiPhone, device.isSubset(of: .iPhoneSafeAreaSet) {
             hasSafeArea = true
         }
         else {
@@ -31,11 +31,8 @@ public final class DeviceDetector {
         }
     }
     
-    public func device(id: String) -> DeviceSet {
-        guard let deviceName = UIDevice.current.deviceName(id: id, dict: deviceDict) else {
-            return .unrecognized
-        }
-        return UIDevice.current.device(name: deviceName)
+    public convenience init?(id identifier: String) {
+        self.init(identifier: identifier)
     }
 }
 ```
