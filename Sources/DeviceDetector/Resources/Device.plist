@@ -70,6 +70,32 @@
 	<string>iPhone 13 Pro Max</string>
 	<key>iPhone14,6</key>
 	<string>iPhone SE (3rd generation)</string>
+    <key>iPhone14,7</key>
+    <string>iPhone 14</string>
+    <key>iPhone14,8</key>
+    <string>iPhone 14 Plus</string>
+    <key>iPhone15,2</key>
+    <string>iPhone 14 Pro</string>
+    <key>iPhone15,3</key>
+    <string>iPhone 14 Pro Max</string>
+    <key>iPhone15,4</key>
+    <string>iPhone 15</string>
+    <key>iPhone15,5</key>
+    <string>iPhone 15 Plus</string>
+    <key>iPhone16,1</key>
+    <string>iPhone 15 Pro</string>
+    <key>iPhone16,2</key>
+    <string>iPhone 15 Pro Max</string>
+    <key>iPhone17,3</key>
+    <string>iPhone 16</string>
+    <key>iPhone17,4</key>
+    <string>iPhone 16 Plus</string>
+    <key>iPhone17,1</key>
+    <string>iPhone 16 Pro</string>
+    <key>iPhone17,2</key>
+    <string>iPhone 16 Pro Max</string>
+    <key>iPhone17,5</key>
+    <string>iPhone 16e</string>
 	<key>iPad6,11</key>
 	<string>iPad (5th generation)</string>
 	<key>iPad6,12</key>

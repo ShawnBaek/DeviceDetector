@@ -1,6 +1,6 @@
 # DeviceDetector
 
-DeviceDetector detects apple's devices(iPhone and iPad) model by using identifier code. I referred to this [wiki](https://www.theiphonewiki.com/wiki/Models). It does not support old models that can't install iOS 13
+DeviceDetector detects apple's devices(iPhone and iPad) model by using identifier code. I referred to this [wiki](https://theapplewiki.com/wiki/). It does not support old models that can't install iOS 13
 
 ```swift
 public final class DeviceDetector {
