@@ -96,6 +96,14 @@
     <string>iPhone 16 Pro Max</string>
     <key>iPhone17,5</key>
     <string>iPhone 16e</string>
+    <key>iPhone18,4</key>
+    <string>iPhone Air</string>
+    <key>iPhone18,3</key>
+    <string>iPhone 17</string>
+    <key>iPhone18,1</key>
+    <string>iPhone 17 Pro</string>
+    <key>iPhone18,2</key>
+    <string>iPhone 17 Pro Max</string>
 	<key>iPad6,11</key>
 	<string>iPad (5th generation)</string>
 	<key>iPad6,12</key>
