@@ -38,6 +38,27 @@ public struct DeviceOptionSet: OptionSet {
     public static let iPhonePro = DeviceOptionSet(rawValue: 1 << 18)
     public static let iPhoneProMax = DeviceOptionSet(rawValue: 1 << 19)
     
+    public static let iPhone14 = DeviceOptionSet(rawValue: 1 << 20)
+    public static let iPhone14Plus = DeviceOptionSet(rawValue: 1 << 21)
+    public static let iPhone14Pro = DeviceOptionSet(rawValue: 1 << 22)
+    public static let iPhone14ProMax = DeviceOptionSet(rawValue: 1 << 23)
+    
+    public static let iPhone15 = DeviceOptionSet(rawValue: 1 << 24)
+    public static let iPhone15Plus = DeviceOptionSet(rawValue: 1 << 25)
+    public static let iPhone15Pro = DeviceOptionSet(rawValue: 1 << 26)
+    public static let iPhone15ProMax = DeviceOptionSet(rawValue: 1 << 27)
+    
+    public static let iPhone16 = DeviceOptionSet(rawValue: 1 << 28)
+    public static let iPhone16Plus = DeviceOptionSet(rawValue: 1 << 29)
+    public static let iPhone16Pro = DeviceOptionSet(rawValue: 1 << 30)
+    public static let iPhone16ProMax = DeviceOptionSet(rawValue: 1 << 31)
+    public static let iPhone16E = DeviceOptionSet(rawValue: 1 << 32)
+    
+    public static let iPhone17 = DeviceOptionSet(rawValue: 1 << 33)
+    public static let iPhone17Pro = DeviceOptionSet(rawValue: 1 << 34)
+    public static let iPhone17ProMax = DeviceOptionSet(rawValue: 1 << 35)
+    public static let iPhoneAir = DeviceOptionSet(rawValue: 1 << 36)
+    
     public static let iPhoneSESet: DeviceOptionSet = [.iPhoneSE1, .iPhoneSE2, .iPhoneSE3]
     public static let iPhonePlusSet: DeviceOptionSet = [.iPhone6SPlus, .iPhone7Plus, .iPhone8Plus]
     public static let iPhone4_7inchSet: DeviceOptionSet = [.iPhoneSE2, .iPhoneSE3, .iPhone6S, .iPhone7, .iPhone8]
