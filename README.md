@@ -1,162 +1,105 @@
+![Swift](https://img.shields.io/badge/Swift-5.6+-orange) ![Platform](https://img.shields.io/badge/Platform-iOS%2013+-blue) ![SPM](https://img.shields.io/badge/SPM-compatible-brightgreen) ![License](https://img.shields.io/badge/License-MIT-lightgrey)
+
 # DeviceDetector
 
-DeviceDetector detects apple's devices(iPhone and iPad) model by using identifier code. I referred to this [wiki](https://theapplewiki.com/wiki/). It does not support old models that can't install iOS 13
+Swift library for detecting Apple device models — iPhone, iPad, and device group classification.
+
+Detects the current device model using hardware identifiers from the [Apple Wiki](https://theapplewiki.com/wiki/). Supports all models that can run iOS 13+, including iPhone 17, iPhone Air, and latest iPad generations.
+
+## Features
+
+- Detect current device model by name and type
+- Check iPhone vs iPad
+- Detect Safe Area (notch / Dynamic Island) devices
+- Group devices by screen size or product line
+- Works on both physical devices and simulators
+- 106+ device mappings maintained via `Device.plist`
+- 23 unit tests
+
+## Requirements
+
+- Swift 5.6+
+- iOS 13+
+
+## Installation
+
+### Swift Package Manager
+
+Add to your `Package.swift`:
 
 ```swift
-public final class DeviceDetector {
-    public static let current = DeviceDetector()
-    public let device: DeviceOptionSet
-    public let deviceName: String
-    public let isiPad: Bool
-    public let isiPhone: Bool
-    public let hasSafeArea: Bool
-    private let deviceDict: NSDictionary
-    private init(identifier: String? = nil) {
-        if let appleDevices = Bundle.module.path(forResource: "Device", ofType: "plist"),
-           let dict = NSDictionary(contentsOfFile: appleDevices) {
-            deviceDict = dict
-        }
-        else {
-            deviceDict = [:]
-        }
-        deviceName = UIDevice.current.deviceName(id: identifier, dict: deviceDict) ?? ""
-        device = UIDevice.current.device(name: deviceName)
-        isiPad = device.isSubset(of: .iPadSet)
-        isiPhone = device.isSubset(of: .iPhoneSet)
-        if isiPhone, device.isSubset(of: .iPhoneSafeAreaSet) {
-            hasSafeArea = true
-        }
-        else {
-            hasSafeArea = false
-        }
-    }
-    
-    public convenience init?(id identifier: String) {
-        self.init(identifier: identifier)
-    }
-}
+dependencies: [
+    .package(url: "https://github.com/ShawnBaek/DeviceDetector.git", from: "1.0.0")
+]
 ```
+
+Or in Xcode: **File > Add Package Dependencies** and enter:
+
+```
+https://github.com/ShawnBaek/DeviceDetector.git
+```
+
+## Usage
+
+### Basic Detection
+
+```swift
+import DeviceDetector
+
+let detector = DeviceDetector.current
+detector.deviceName   // "iPhone 15 Pro"
+detector.isiPhone     // true
+detector.isiPad       // false
+detector.hasSafeArea  // true
+```
+
+### Device Groups
+
+Uses `OptionSet` for flexible device group checks:
+
+```swift
+import DeviceDetector
+
+// Check specific device families
+DeviceDetector.current.device.isSubset(of: .iPhoneSESet)      // SE 1st, 2nd, 3rd gen
+DeviceDetector.current.device.isSubset(of: .iPhonePlusSet)     // Plus models
+DeviceDetector.current.device.isSubset(of: .iPadProSet)        // All iPad Pro models
+DeviceDetector.current.device.isSubset(of: .iPhoneSafeAreaSet) // Notch & Dynamic Island
+
+// Check by screen size
+DeviceDetector.current.device.isSubset(of: .iPhone4inchSet)    // 4-inch devices
+DeviceDetector.current.device.isSubset(of: .iPhone4_7inchSet)  // 4.7-inch devices
+```
+
+### Custom Identifier
+
+```swift
+let detector = DeviceDetector(id: "iPhone17,1")
+detector?.deviceName  // "iPhone 16 Pro"
+```
+
+## Device Groups
+
+| Group | Includes |
+|---|---|
+| `iPhoneSet` | All iPhone models |
+| `iPadSet` | All iPad models |
+| `iPhoneSESet` | iPhone SE 1st, 2nd, 3rd generation |
+| `iPhonePlusSet` | iPhone 6/7/8 Plus |
+| `iPhoneSafeAreaSet` | All notch and Dynamic Island devices |
+| `iPadProSet` | All iPad Pro models (9.7", 10.5", 11", 12.9") |
+| `iPhone4inchSet` | 4-inch screen devices |
+| `iPhone4_7inchSet` | 4.7-inch screen devices |
 
 ## Sample
 
 |<img width="577" alt="test3" src="https://user-images.githubusercontent.com/12643700/168486396-d028e8f3-1698-4c54-9dc8-fbbd93a15af3.png">|<img width="620" alt="test4" src="https://user-images.githubusercontent.com/12643700/168486399-5b476abb-41b0-49fb-9b67-2d7bfc7b8405.png">|<img width="359" alt="test1" src="https://user-images.githubusercontent.com/12643700/168486335-7c5aa1b1-f74d-4905-8a41-0cb8cd84ce8b.png">|<img width="375" alt="test2" src="https://user-images.githubusercontent.com/12643700/168486341-21b1214c-63bb-4749-bcf4-c81108c3b3fa.png">|
 |---|---|---|---|
 
+## License
 
-```swift
-import UIKit
-import DeviceDetector
-class ViewController: UIViewController {
-    @IBOutlet weak var label: UILabel!
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        let detector = DeviceDetector.current
-        let deviceName = detector.deviceName
-        let device = detector.device
-        
-        let information = """
-        Model: \(deviceName)
-        iPhone?: \(detector.isiPhone)
-        iPad?: \(detector.isiPad)
-        Notch?: \(detector.hasSafeArea)
-        
-        4inch?: \(device.isSubset(of: .iPhone4inchSet))
-        4.7inch?: \(device.isSubset(of: .iPhone4_7inchSet))
-        iPhoneSE?: \(device.isSubset(of: .iPhoneSESet))
-        iPhonePlus?: \(device.isSubset(of: .iPhonePlusSet))
-        iPadPro?: \(device.isSubset(of: .iPadProSet))
-        """
-        label.text = information
-    }
-}
-```
+MIT License.
 
-## Features
-You can check the device model not only physical device but also simulator.
+## Author
 
-1. Check the current device
-```swift
-import DeviceDetector
-DeviceDetector.current.device //DeviceOptionSet.iPhone11
-```
-
-2. Check the current device name (String)
-```swift
-import DeviceDetector
-DeviceDetector.current.deviceName //iPhone11
-```
-
-3. Check whether iPhone or iPad
-```swift
-import DeviceDetector
-DeviceDetector.current.isiPhone //true or false
-DeviceDetector.current.isiPad //true or false
-```
-
-4. Device Groups
-It uses OptionSet. You can check Is your model subset of the device groups.
-
-- iPhoneSESet (iPhoneSE1, iPhoneSE2, iPhoneSE3)
-```swift
-import DeviceDetector
-if DeviceDetector.current.device.isSubset(of: .iPhoneSESet) {
-  print("This is iPhoneSE")
-}
-```
-
-- iPhonePlusSet (iPhone6Plus, iPhone7Plus, iPhone8Plus)
-```swift
-import DeviceDetector
-if DeviceDetector.current.device.isSubset(of: .iPhonePlusSet) {
-  print("This is iPhonePlus")
-}
-```
-
-- iPhone4_7inchSet (iPhoneSE2, iPhoneSE3, iPhone6, iPhone7, iPhone8)
-```swift
-import DeviceDetector
-if DeviceDetector.current.device.isSubset(of: .iPhone4_7inchSet) {
-  print("This is 4.7inch")
-}
-```
-
-- iPhone4inchSet (iPhoneSE1)
-```swift
-import DeviceDetector
-if DeviceDetector.current.device.isSubset(of: .iPhone4inchSet) {
-  print("This is 4inch")
-}
-```
-
-- iPhoneSafeAreaSet
-```swift
-import DeviceDetector
-//Option 1. Use DeviceSet.iPhoneSafeAreaSet
-if DeviceDetector.current.device.isSubset(of: .iPhoneSafeAreaSet) {
-  print("This iPhone has safeArea")
-}
-
-//Option 2. DeviceDetector.shared.hasSafeArea
-DeviceDetector.current.hasSafeArea //true or false
-```
-- iPadProSet (iPadPro9_7inch, iPadPro10_5inch, iPadPro11inch, iPadPro12_9inch)
-```swift
-import DeviceDetector
-if DeviceDetector.current.device.isSubset(of: .iPadProSet) {
-  print("This is iPad Pro")
-}
-```
-
-## Environment
-Above iOS 13
-
-## How to install, SPM
-Use Swift Package Manager
-
-## UnitTest (23 tests)
-<img width="263" alt="tests" src="https://user-images.githubusercontent.com/12643700/168467179-b70c0117-4bc1-476b-8b99-dfaa8df051fe.png">
-
-
-## TODO
-Support Mac and Apple Watch
+Shawn Baek — [GitHub](https://github.com/ShawnBaek) · shawn@shawnbaek.com
