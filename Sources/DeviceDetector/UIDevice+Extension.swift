@@ -27,6 +27,7 @@ extension UIDevice {
             static let pro10_5 = "10.5"
             static let pro12_9 = "12.9"
             static let pro11 = "11"
+            static let pro13 = "13"
         }
     }
     
@@ -87,6 +88,31 @@ extension UIDevice {
             else {
                 return .iPhoneSE3
             }
+        }
+        else if model == "iPhone Air" { return .iPhoneAir }
+        else if model.starts(with: "iPhone 17") {
+            if model == "iPhone 17" { return .iPhone17 }
+            else if model.contains(Identifier.iPhone.max) { return .iPhone17ProMax }
+            else { return .iPhone17Pro }
+        }
+        else if model.starts(with: "iPhone 16") {
+            if model == "iPhone 16" { return .iPhone16 }
+            else if model == "iPhone 16e" { return .iPhone16E }
+            else if model.contains(Identifier.iPhone.plus) { return .iPhone16Plus }
+            else if model.contains(Identifier.iPhone.max) { return .iPhone16ProMax }
+            else { return .iPhone16Pro }
+        }
+        else if model.starts(with: "iPhone 15") {
+            if model == "iPhone 15" { return .iPhone15 }
+            else if model.contains(Identifier.iPhone.plus) { return .iPhone15Plus }
+            else if model.contains(Identifier.iPhone.max) { return .iPhone15ProMax }
+            else { return .iPhone15Pro }
+        }
+        else if model.starts(with: "iPhone 14") {
+            if model == "iPhone 14" { return .iPhone14 }
+            else if model.contains(Identifier.iPhone.plus) { return .iPhone14Plus }
+            else if model.contains(Identifier.iPhone.max) { return .iPhone14ProMax }
+            else { return .iPhone14Pro }
         }
         else if Identifier.iPhone.old.filter({ model.contains($0) }).count > 0 {
             if model.contains(Identifier.iPhone.plus) {
@@ -187,6 +213,9 @@ extension UIDevice {
             else if model.contains(Identifier.iPad.pro12_9) {
                 return .iPadPro12_9inch
             }
+            else if model.contains(Identifier.iPad.pro13) {
+                return .iPadPro13inch
+            }
         }
         else if model.contains(Identifier.iPad.mini) {
             return .iPadMini
@@ -206,6 +235,12 @@ extension UIDevice {
             }
             else if model == DeviceOptionSet.iPad9.name {
                 return .iPad9
+            }
+            else if model == DeviceOptionSet.iPad10.name {
+                return .iPad10
+            }
+            else if model == DeviceOptionSet.iPad11.name {
+                return .iPad11
             }
         }
         return .unrecognized

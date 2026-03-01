@@ -63,7 +63,15 @@ public struct DeviceOptionSet: OptionSet {
     public static let iPhonePlusSet: DeviceOptionSet = [.iPhone6SPlus, .iPhone7Plus, .iPhone8Plus]
     public static let iPhone4_7inchSet: DeviceOptionSet = [.iPhoneSE2, .iPhoneSE3, .iPhone6S, .iPhone7, .iPhone8]
     public static let iPhone4inchSet: DeviceOptionSet = [.iPhoneSE1]
-    public static let iPhoneSet: DeviceOptionSet = [.iPhoneSESet, .iPhonePlusSet, .iPhone4_7inchSet, .iPhone4inchSet, .iPhoneX, .iPhoneXS, .iPhoneXR, .iPhoneXSMax, .iPhone11, .iPhone12, .iPhone13, .iPhoneMini, .iPhonePro, .iPhoneProMax]
+    public static let iPhoneSet: DeviceOptionSet = [
+        .iPhoneSESet, .iPhonePlusSet, .iPhone4_7inchSet, .iPhone4inchSet,
+        .iPhoneX, .iPhoneXS, .iPhoneXR, .iPhoneXSMax,
+        .iPhone11, .iPhone12, .iPhone13, .iPhoneMini, .iPhonePro, .iPhoneProMax,
+        .iPhone14, .iPhone14Plus, .iPhone14Pro, .iPhone14ProMax,
+        .iPhone15, .iPhone15Plus, .iPhone15Pro, .iPhone15ProMax,
+        .iPhone16, .iPhone16Plus, .iPhone16Pro, .iPhone16ProMax, .iPhone16E,
+        .iPhone17, .iPhone17Pro, .iPhone17ProMax, .iPhoneAir
+    ]
     public static let iPhoneSafeAreaSet: DeviceOptionSet = iPhoneSet.subtracting(iPhone4inchSet).subtracting(iPhone4_7inchSet).subtracting(iPhonePlusSet)
     
     //MARK: iPad
@@ -80,9 +88,12 @@ public struct DeviceOptionSet: OptionSet {
     public static let iPadPro10_5inch = DeviceOptionSet(rawValue: 1 << 58)
     public static let iPadPro11inch   = DeviceOptionSet(rawValue: 1 << 59)
     public static let iPadPro12_9inch   = DeviceOptionSet(rawValue: 1 << 60)
-    
-    public static let iPadProSet: DeviceOptionSet = [.iPadPro9_7inch, .iPadPro10_5inch, .iPadPro11inch, .iPadPro12_9inch]
-    public static let iPadSet: DeviceOptionSet = [.iPad5, .iPad6, .iPad7, .iPad8, .iPad9, .iPadAir, .iPadMini, .iPadProSet]
+    public static let iPadPro13inch    = DeviceOptionSet(rawValue: 1 << 61)
+    public static let iPad10           = DeviceOptionSet(rawValue: 1 << 62)
+    public static let iPad11           = DeviceOptionSet(rawValue: 1 << 63)
+
+    public static let iPadProSet: DeviceOptionSet = [.iPadPro9_7inch, .iPadPro10_5inch, .iPadPro11inch, .iPadPro12_9inch, .iPadPro13inch]
+    public static let iPadSet: DeviceOptionSet = [.iPad5, .iPad6, .iPad7, .iPad8, .iPad9, .iPad10, .iPad11, .iPadAir, .iPadMini, .iPadProSet]
     
     //MARK: iPod
     public static let iPod = DeviceOptionSet(rawValue: 1<<80)
@@ -131,6 +142,46 @@ public struct DeviceOptionSet: OptionSet {
             return "iPad (8th generation)"
         case .iPad9:
             return "iPad (9th generation)"
+        case .iPad10:
+            return "iPad (10th generation)"
+        case .iPad11:
+            return "iPad (11th generation)"
+        case .iPhone14:
+            return "iPhone 14"
+        case .iPhone14Plus:
+            return "iPhone 14 Plus"
+        case .iPhone14Pro:
+            return "iPhone 14 Pro"
+        case .iPhone14ProMax:
+            return "iPhone 14 Pro Max"
+        case .iPhone15:
+            return "iPhone 15"
+        case .iPhone15Plus:
+            return "iPhone 15 Plus"
+        case .iPhone15Pro:
+            return "iPhone 15 Pro"
+        case .iPhone15ProMax:
+            return "iPhone 15 Pro Max"
+        case .iPhone16:
+            return "iPhone 16"
+        case .iPhone16Plus:
+            return "iPhone 16 Plus"
+        case .iPhone16Pro:
+            return "iPhone 16 Pro"
+        case .iPhone16ProMax:
+            return "iPhone 16 Pro Max"
+        case .iPhone16E:
+            return "iPhone 16e"
+        case .iPhone17:
+            return "iPhone 17"
+        case .iPhone17Pro:
+            return "iPhone 17 Pro"
+        case .iPhone17ProMax:
+            return "iPhone 17 Pro Max"
+        case .iPhoneAir:
+            return "iPhone Air"
+        case .iPadPro13inch:
+            return "iPad Pro (13-inch)"
         case .iPod:
             return "iPod"
         default:

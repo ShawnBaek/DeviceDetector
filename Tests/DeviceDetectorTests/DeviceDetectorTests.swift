@@ -234,6 +234,141 @@ final class DeviceDetectorTests: XCTestCase {
         }
     }
     
+    func test_iPhone14() throws {
+        let iPhone14 = ["iPhone14,7"]
+        let iPhone14Plus = ["iPhone14,8"]
+        let iPhone14Pro = ["iPhone15,2"]
+        let iPhone14ProMax = ["iPhone15,3"]
+
+        iPhone14.forEach {
+            let device = DeviceDetector(id: $0)!.device
+            XCTAssertEqual(device, .iPhone14)
+            XCTAssertTrue(DeviceOptionSet.iPhoneSet.contains(device), "iPhone 14 should be of iPhone")
+        }
+        iPhone14Plus.forEach {
+            let device = DeviceDetector(id: $0)!.device
+            XCTAssertEqual(device, .iPhone14Plus)
+            XCTAssertTrue(DeviceOptionSet.iPhoneSet.contains(device), "iPhone 14 Plus should be of iPhone")
+        }
+        iPhone14Pro.forEach {
+            let device = DeviceDetector(id: $0)!.device
+            XCTAssertEqual(device, .iPhone14Pro)
+            XCTAssertTrue(DeviceOptionSet.iPhoneSet.contains(device), "iPhone 14 Pro should be of iPhone")
+        }
+        iPhone14ProMax.forEach {
+            let device = DeviceDetector(id: $0)!.device
+            XCTAssertEqual(device, .iPhone14ProMax)
+            XCTAssertTrue(DeviceOptionSet.iPhoneSet.contains(device), "iPhone 14 Pro Max should be of iPhone")
+        }
+    }
+
+    func test_iPhone15() throws {
+        let iPhone15 = ["iPhone15,4"]
+        let iPhone15Plus = ["iPhone15,5"]
+        let iPhone15Pro = ["iPhone16,1"]
+        let iPhone15ProMax = ["iPhone16,2"]
+
+        iPhone15.forEach {
+            let device = DeviceDetector(id: $0)!.device
+            XCTAssertEqual(device, .iPhone15)
+            XCTAssertTrue(DeviceOptionSet.iPhoneSet.contains(device), "iPhone 15 should be of iPhone")
+        }
+        iPhone15Plus.forEach {
+            let device = DeviceDetector(id: $0)!.device
+            XCTAssertEqual(device, .iPhone15Plus)
+            XCTAssertTrue(DeviceOptionSet.iPhoneSet.contains(device), "iPhone 15 Plus should be of iPhone")
+        }
+        iPhone15Pro.forEach {
+            let device = DeviceDetector(id: $0)!.device
+            XCTAssertEqual(device, .iPhone15Pro)
+            XCTAssertTrue(DeviceOptionSet.iPhoneSet.contains(device), "iPhone 15 Pro should be of iPhone")
+        }
+        iPhone15ProMax.forEach {
+            let device = DeviceDetector(id: $0)!.device
+            XCTAssertEqual(device, .iPhone15ProMax)
+            XCTAssertTrue(DeviceOptionSet.iPhoneSet.contains(device), "iPhone 15 Pro Max should be of iPhone")
+        }
+    }
+
+    func test_iPhone16() throws {
+        let iPhone16 = ["iPhone17,3"]
+        let iPhone16Plus = ["iPhone17,4"]
+        let iPhone16Pro = ["iPhone17,1"]
+        let iPhone16ProMax = ["iPhone17,2"]
+
+        iPhone16.forEach {
+            let device = DeviceDetector(id: $0)!.device
+            XCTAssertEqual(device, .iPhone16)
+            XCTAssertTrue(DeviceOptionSet.iPhoneSet.contains(device), "iPhone 16 should be of iPhone")
+        }
+        iPhone16Plus.forEach {
+            let device = DeviceDetector(id: $0)!.device
+            XCTAssertEqual(device, .iPhone16Plus)
+            XCTAssertTrue(DeviceOptionSet.iPhoneSet.contains(device), "iPhone 16 Plus should be of iPhone")
+        }
+        iPhone16Pro.forEach {
+            let device = DeviceDetector(id: $0)!.device
+            XCTAssertEqual(device, .iPhone16Pro)
+            XCTAssertTrue(DeviceOptionSet.iPhoneSet.contains(device), "iPhone 16 Pro should be of iPhone")
+        }
+        iPhone16ProMax.forEach {
+            let device = DeviceDetector(id: $0)!.device
+            XCTAssertEqual(device, .iPhone16ProMax)
+            XCTAssertTrue(DeviceOptionSet.iPhoneSet.contains(device), "iPhone 16 Pro Max should be of iPhone")
+        }
+    }
+
+    func test_iPhone16e() throws {
+        let iPhone16e = "iPhone17,5"
+        let device = DeviceDetector(id: iPhone16e)!.device
+        XCTAssertEqual(device, .iPhone16E)
+        XCTAssertTrue(DeviceOptionSet.iPhoneSet.contains(device), "iPhone 16e should be of iPhone")
+    }
+
+    func test_iPhone17() throws {
+        let iPhone17 = ["iPhone18,3"]
+        let iPhone17Pro = ["iPhone18,1"]
+        let iPhone17ProMax = ["iPhone18,2"]
+
+        iPhone17.forEach {
+            let device = DeviceDetector(id: $0)!.device
+            XCTAssertEqual(device, .iPhone17)
+            XCTAssertTrue(DeviceOptionSet.iPhoneSet.contains(device), "iPhone 17 should be of iPhone")
+        }
+        iPhone17Pro.forEach {
+            let device = DeviceDetector(id: $0)!.device
+            XCTAssertEqual(device, .iPhone17Pro)
+            XCTAssertTrue(DeviceOptionSet.iPhoneSet.contains(device), "iPhone 17 Pro should be of iPhone")
+        }
+        iPhone17ProMax.forEach {
+            let device = DeviceDetector(id: $0)!.device
+            XCTAssertEqual(device, .iPhone17ProMax)
+            XCTAssertTrue(DeviceOptionSet.iPhoneSet.contains(device), "iPhone 17 Pro Max should be of iPhone")
+        }
+    }
+
+    func test_iPhoneAir() throws {
+        let iPhoneAir = "iPhone18,4"
+        let device = DeviceDetector(id: iPhoneAir)!.device
+        XCTAssertEqual(device, .iPhoneAir)
+        XCTAssertTrue(DeviceOptionSet.iPhoneSet.contains(device), "iPhone Air should be of iPhone")
+    }
+
+    func test_iPhone14_hasSafeArea() throws {
+        let iPhone14Series = ["iPhone14,7", "iPhone14,8", "iPhone15,2", "iPhone15,3"]
+        let iPhone15Series = ["iPhone15,4", "iPhone15,5", "iPhone16,1", "iPhone16,2"]
+        let iPhone16Series = ["iPhone17,3", "iPhone17,4", "iPhone17,1", "iPhone17,2", "iPhone17,5"]
+        let iPhone17Series = ["iPhone18,3", "iPhone18,1", "iPhone18,2"]
+        let iPhoneAir = ["iPhone18,4"]
+
+        let allNew = [iPhone14Series, iPhone15Series, iPhone16Series, iPhone17Series, iPhoneAir].flatMap { $0 }
+
+        allNew.forEach {
+            let device = DeviceDetector(id: $0)!.device
+            XCTAssertTrue(DeviceOptionSet.iPhoneSafeAreaSet.contains(device), "\($0) should have safeArea")
+        }
+    }
+
     func test_iPhone_hasSafeArea() throws {
         let iPhoneX = ["iPhone10,3", "iPhone10,6"]
         let iPhoneXS = ["iPhone11,2"]
@@ -464,6 +599,103 @@ final class DeviceDetectorTests: XCTestCase {
             XCTAssertEqual(device, .iPadPro12_9inch)
             XCTAssertTrue(DeviceOptionSet.iPadProSet.contains(device), "iPad Pro (12.9-inch)(5th generation) should be of iPad Pro")
             XCTAssertTrue(DeviceOptionSet.iPadSet.contains(device), "iPad Pro (12.9-inch)(5th generation) should be of iPad")
+        }
+    }
+
+    func test_iPad10() throws {
+        let iPad10th = ["iPad13,18", "iPad13,19"]
+        iPad10th.forEach {
+            let device = DeviceDetector(id: $0)!.device
+            XCTAssertEqual(device, .iPad10)
+            XCTAssertTrue(DeviceOptionSet.iPadSet.contains(device), "iPad (10th generation) should be of iPad")
+        }
+    }
+
+    func test_iPad11() throws {
+        let iPad11th = ["iPad15,7", "iPad15,8"]
+        iPad11th.forEach {
+            let device = DeviceDetector(id: $0)!.device
+            XCTAssertEqual(device, .iPad11)
+            XCTAssertTrue(DeviceOptionSet.iPadSet.contains(device), "iPad (11th generation) should be of iPad")
+        }
+    }
+
+    func test_iPadMini7() throws {
+        let iPadMini7th = ["iPad16,1", "iPad16,2"]
+        iPadMini7th.forEach {
+            let device = DeviceDetector(id: $0)!.device
+            XCTAssertEqual(device, .iPadMini)
+            XCTAssertTrue(DeviceOptionSet.iPadSet.contains(device), "iPad mini (7th generation) should be of iPad")
+        }
+    }
+
+    func test_iPadAir_M2() throws {
+        let iPadAirM2_11 = ["iPad14,8", "iPad14,9"]
+        let iPadAirM2_13 = ["iPad14,10", "iPad14,11"]
+
+        iPadAirM2_11.forEach {
+            let device = DeviceDetector(id: $0)!.device
+            XCTAssertEqual(device, .iPadAir)
+            XCTAssertTrue(DeviceOptionSet.iPadSet.contains(device), "iPad Air 11-inch (M2) should be of iPad")
+        }
+        iPadAirM2_13.forEach {
+            let device = DeviceDetector(id: $0)!.device
+            XCTAssertEqual(device, .iPadAir)
+            XCTAssertTrue(DeviceOptionSet.iPadSet.contains(device), "iPad Air 13-inch (M2) should be of iPad")
+        }
+    }
+
+    func test_iPadAir_M3() throws {
+        let iPadAirM3_11 = ["iPad15,3", "iPad15,4"]
+        let iPadAirM3_13 = ["iPad15,5", "iPad15,6"]
+
+        iPadAirM3_11.forEach {
+            let device = DeviceDetector(id: $0)!.device
+            XCTAssertEqual(device, .iPadAir)
+            XCTAssertTrue(DeviceOptionSet.iPadSet.contains(device), "iPad Air 11-inch (M3) should be of iPad")
+        }
+        iPadAirM3_13.forEach {
+            let device = DeviceDetector(id: $0)!.device
+            XCTAssertEqual(device, .iPadAir)
+            XCTAssertTrue(DeviceOptionSet.iPadSet.contains(device), "iPad Air 13-inch (M3) should be of iPad")
+        }
+    }
+
+    func test_iPadPro11inch_4th_5th() throws {
+        let iPadPro11inch4th = ["iPad14,3", "iPad14,4"]
+        let iPadPro11inch5th = ["iPad16,3", "iPad16,4"]
+
+        iPadPro11inch4th.forEach {
+            let device = DeviceDetector(id: $0)!.device
+            XCTAssertEqual(device, .iPadPro11inch)
+            XCTAssertTrue(DeviceOptionSet.iPadProSet.contains(device), "iPad Pro (11-inch)(4th generation) should be of iPad Pro")
+            XCTAssertTrue(DeviceOptionSet.iPadSet.contains(device), "iPad Pro (11-inch)(4th generation) should be of iPad")
+        }
+        iPadPro11inch5th.forEach {
+            let device = DeviceDetector(id: $0)!.device
+            XCTAssertEqual(device, .iPadPro11inch)
+            XCTAssertTrue(DeviceOptionSet.iPadProSet.contains(device), "iPad Pro (11-inch)(5th generation) should be of iPad Pro")
+            XCTAssertTrue(DeviceOptionSet.iPadSet.contains(device), "iPad Pro (11-inch)(5th generation) should be of iPad")
+        }
+    }
+
+    func test_iPadPro12_9inch_6th() throws {
+        let iPadPro12_9inch6th = ["iPad14,5", "iPad14,6"]
+        iPadPro12_9inch6th.forEach {
+            let device = DeviceDetector(id: $0)!.device
+            XCTAssertEqual(device, .iPadPro12_9inch)
+            XCTAssertTrue(DeviceOptionSet.iPadProSet.contains(device), "iPad Pro (12.9-inch)(6th generation) should be of iPad Pro")
+            XCTAssertTrue(DeviceOptionSet.iPadSet.contains(device), "iPad Pro (12.9-inch)(6th generation) should be of iPad")
+        }
+    }
+
+    func test_iPadPro13inch() throws {
+        let iPadPro13inch = ["iPad16,5", "iPad16,6"]
+        iPadPro13inch.forEach {
+            let device = DeviceDetector(id: $0)!.device
+            XCTAssertEqual(device, .iPadPro13inch)
+            XCTAssertTrue(DeviceOptionSet.iPadProSet.contains(device), "iPad Pro (13-inch) should be of iPad Pro")
+            XCTAssertTrue(DeviceOptionSet.iPadSet.contains(device), "iPad Pro (13-inch) should be of iPad")
         }
     }
 }
