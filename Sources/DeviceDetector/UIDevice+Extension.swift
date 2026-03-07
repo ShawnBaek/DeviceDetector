@@ -1,14 +1,13 @@
 //
 //  File.swift
-//  
+//
 //
 //  Created by Sungwook Baek on 2022/05/14.
 //
 
 import Foundation
-import UIKit
 
-extension UIDevice {
+enum DeviceParser {
     private enum Identifier {
         static let simulator = "Simulator"
         enum iPhone {
@@ -30,24 +29,8 @@ extension UIDevice {
             static let pro13 = "13"
         }
     }
-    
-    func device(name: String?) -> DeviceOptionSet {
-        guard let deviceName = name else {
-            return .unrecognized
-        }
-        switch deviceName {
-        case let model where model.starts(with: DeviceOptionSet.iPhoneSet.name):
-            return iPhone(model: model)
-        case let model where model.starts(with: DeviceOptionSet.iPadSet.name):
-            return iPad(model: model)
-        case let model where model.starts(with: DeviceOptionSet.iPod.name):
-            return .iPod
-        default:
-            return .unrecognized
-        }
-    }
-    
-    func deviceName(id: String? = nil, dict: NSDictionary) -> String? {
+
+    static func deviceName(id: String? = nil, dict: NSDictionary) -> String? {
         var identifier = ""
         if let id = id {
             identifier = id
@@ -64,7 +47,8 @@ extension UIDevice {
         guard var deviceName = dict.value(forKey: identifier) as? String else {
             return nil
         }
-        if deviceName == UIDevice.Identifier.simulator, let simulatorDeviceIdentifier = ProcessInfo().environment["SIMULATOR_MODEL_IDENTIFIER"] {
+        #if canImport(UIKit)
+        if deviceName == Identifier.simulator, let simulatorDeviceIdentifier = ProcessInfo().environment["SIMULATOR_MODEL_IDENTIFIER"] {
             if let simulatorDeviceName = dict.value(forKey: simulatorDeviceIdentifier) as? String {
                 deviceName = simulatorDeviceName
             }
@@ -72,12 +56,27 @@ extension UIDevice {
                 return nil
             }
         }
+        #endif
         return deviceName
     }
-}
 
-extension UIDevice {
-    private func iPhone(model: String) -> DeviceOptionSet {
+    static func device(name: String?) -> DeviceOptionSet {
+        guard let deviceName = name else {
+            return .unrecognized
+        }
+        switch deviceName {
+        case let model where model.starts(with: DeviceOptionSet.iPhoneSet.name):
+            return iPhone(model: model)
+        case let model where model.starts(with: DeviceOptionSet.iPadSet.name):
+            return iPad(model: model)
+        case let model where model.starts(with: DeviceOptionSet.iPod.name):
+            return .iPod
+        default:
+            return .unrecognized
+        }
+    }
+
+    private static func iPhone(model: String) -> DeviceOptionSet {
         if model.starts(with: DeviceOptionSet.iPhoneSESet.name) {
             if model == DeviceOptionSet.iPhoneSE1.name {
                 return .iPhoneSE1
@@ -195,8 +194,8 @@ extension UIDevice {
         }
         return .unrecognized
     }
-    
-    private func iPad(model: String) -> DeviceOptionSet {
+
+    private static func iPad(model: String) -> DeviceOptionSet {
         if model.contains(Identifier.iPad.air) {
             return .iPadAir
         }
@@ -246,3 +245,16 @@ extension UIDevice {
         return .unrecognized
     }
 }
+
+#if canImport(UIKit)
+import UIKit
+
+extension UIDevice {
+    func deviceName(id: String? = nil, dict: NSDictionary) -> String? {
+        DeviceParser.deviceName(id: id, dict: dict)
+    }
+    func device(name: String?) -> DeviceOptionSet {
+        DeviceParser.device(name: name)
+    }
+}
+#endif
